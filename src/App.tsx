@@ -1,81 +1,85 @@
-import { Suspense, useEffect, useRef } from 'react';
-import { Appearance, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Suspense } from 'react';
+import { Appearance, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Canvas } from '@react-three/fiber/native';
-import { useFrame, useThree } from '@react-three/fiber';
-import { Environment, OrbitControls } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import { Environment } from '@react-three/drei/native';
+import useOrbitControls from 'r3f-native-orbitcontrols';
 
 const Box = () => {
-  useFrame(({ scene }) => {
-    const box = scene.getObjectByName('box')
-    if (box) {
-      box.rotation.x += 0.01
-      box.rotation.y += 0.01
-    }
-  });
+    useFrame(({ scene }) => {
+        const box = scene.getObjectByName('box')
+        if (box) {
+            box.rotation.x += 0.01
+            box.rotation.y += 0.01
+        }
+    });
 
-  return (
-    <mesh name='box'>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshPhysicalMaterial color='blue' />
-    </mesh>
-  )
+    return (
+        <mesh name='box'>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshPhysicalMaterial color='blue' />
+        </mesh>
+    )
 }
 
 const Scene = () => {
-  const { camera } = useThree();
-  useEffect(() => {
-    camera.position.set(0, 5, 5);
-  }, [camera]);
-  return (
-    <>
-      <color attach="background" args={['cyan']} />
-      <ambientLight intensity={Math.PI / 2} />
-      <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-      <Suspense fallback={null}>
-        <Environment preset="park" />
-        <Box />
-      </Suspense>
-    </>
-  );
+    // If you need to useThree, you can do so here
+    return (
+        <>
+            <ambientLight intensity={Math.PI / 2} />
+            <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
+            <Suspense fallback={null}>
+                {/*
+                    Environment presets work partially
+                    The environment pngs are not loading
+                    but the lights are working
+                */}
+                <Environment preset="dawn" />
+                <Box />
+            </Suspense>
+        </>
+    );
 };
 
 export default function App() {
-  const colorScheme = Appearance.getColorScheme();
-  const isDarkMode = colorScheme === 'dark';
+    const colorScheme = Appearance.getColorScheme();
+    const isDarkMode = colorScheme === 'dark';
+    const [OrbitControls, events] = useOrbitControls();
 
-  const canvasRef = useRef<View>(null);
-
-  return (
-    <GestureHandlerRootView>
-      <SafeAreaView
-        style={{ backgroundColor: isDarkMode ? 'yellow' : 'cyan' }}
-      >
-        <Text style={{ color: isDarkMode ? 'white' : 'black', textAlign: 'center' }}>Shaderism</Text>
-        <Canvas
-          ref={canvasRef}
-
-          camera={{
-            position: [0, 5, 5]
-          }}
-
-          style={{
-            flex: 1,
-            backgroundColor: 'black',
-            height: 300,
-            width: 300,
-          }}
-
-          gl={{
-            antialias: true,
-            powerPreference: 'high-performance',
-          }}
-        >
-          <Scene />
-          <OrbitControls />
-        </Canvas>
-      </SafeAreaView>
-    </GestureHandlerRootView>
-  );
+    return (
+        <SafeAreaProvider>
+            <GestureHandlerRootView>
+                <SafeAreaView
+                    style={{ backgroundColor: isDarkMode ? 'black' : 'white', height: '100%', width: '100%' }}
+                >
+                    <View style={{ flex: 1, position: 'relative', margin: 16 }} {...events}>
+                        <Canvas
+                            style={{
+                                backgroundColor: isDarkMode ? 'black' : 'white',
+                                borderWidth: 1,
+                                borderColor: isDarkMode ? 'white' : 'black',
+                                shadowColor: isDarkMode ? 'white' : 'black',
+                                shadowOffset: { width: 4, height: 4 },
+                                shadowOpacity: 0.4,
+                                shadowRadius: 6,
+                                width: '100%',
+                                height: '100%',
+                            }}
+                            gl={{
+                                debug: {
+                                    checkShaderErrors: false,
+                                    onShaderError: null,
+                                },
+                            }}
+                        >
+                            <Scene />
+                            <OrbitControls />
+                        </Canvas>
+                    </View>
+                </SafeAreaView>
+            </GestureHandlerRootView>
+        </SafeAreaProvider>
+    );
 }

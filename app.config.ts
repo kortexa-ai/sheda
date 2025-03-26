@@ -4,10 +4,9 @@ import { ExpoConfig } from 'expo/config';
 const config: ExpoConfig = {
   name: "shaderism",
   slug: "shaderism",
-  version: "0.0.1",
+  version: "0.1.0",
 
   newArchEnabled: true,
-  jsEngine: "jsc",
   experiments: {
     reactCanary: true,
     turboModules: true
