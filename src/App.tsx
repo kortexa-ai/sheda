@@ -4,10 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Canvas } from '@react-three/fiber/native';
 import { useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-
-// import "fast-text-encoding";
-window.parent = window;
+import { Environment, OrbitControls } from '@react-three/drei';
 
 const Box = () => {
   useFrame(({ scene }) => {
@@ -33,14 +30,16 @@ const Scene = () => {
   }, [camera]);
   return (
     <>
+      <color attach="background" args={['cyan']} />
       <ambientLight intensity={Math.PI / 2} />
       <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-      <Box />
+      <Suspense fallback={null}>
+        <Environment preset="park" />
+        <Box />
+      </Suspense>
     </>
   );
 };
-
-
 
 export default function App() {
   const colorScheme = Appearance.getColorScheme();
@@ -62,6 +61,8 @@ export default function App() {
           }}
 
           style={{
+            flex: 1,
+            backgroundColor: 'black',
             height: 300,
             width: 300,
           }}
@@ -69,17 +70,10 @@ export default function App() {
           gl={{
             antialias: true,
             powerPreference: 'high-performance',
-            premultipliedAlpha: false,
-            debug: {
-              checkShaderErrors: true,
-              onShaderError: null
-            }
           }}
         >
-          <Suspense fallback={null}>
-            <Scene />
-            <OrbitControls />
-          </Suspense>
+          <Scene />
+          <OrbitControls />
         </Canvas>
       </SafeAreaView>
     </GestureHandlerRootView>
