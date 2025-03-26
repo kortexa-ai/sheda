@@ -8,28 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		261F4A4DD45EB66321FDEBB8 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468566B7AF49B03CD46BCAC6 /* ExpoModulesProvider.swift */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		68C0943BBDFCB388A98B99A6 /* libPods-shaderism.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1510D5C541BB93CD78ADC8AC /* libPods-shaderism.a */; };
-		A487104C55DF724DFFDA2C9F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 71898F2D776CEE4BEAFF93FA /* PrivacyInfo.xcprivacy */; };
+		8C01C504CBACBEFE640300AB /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E9F940B636753CAF57ADB2 /* ExpoModulesProvider.swift */; };
+		B6C4D0AA7560FD85FC2A9315 /* libPods-shaderism.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A7D3486220C9CEAB6D709A /* libPods-shaderism.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		D4286CD8FB003FC6F97DDDA6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0454FEDECC476EEC3FAD7A08 /* PrivacyInfo.xcprivacy */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0454FEDECC476EEC3FAD7A08 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = shaderism/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* shaderism.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shaderism.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = shaderism/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = shaderism/Info.plist; sourceTree = "<group>"; };
-		1510D5C541BB93CD78ADC8AC /* libPods-shaderism.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-shaderism.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		468566B7AF49B03CD46BCAC6 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-shaderism/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		71898F2D776CEE4BEAFF93FA /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = shaderism/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		31E9F940B636753CAF57ADB2 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-shaderism/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		739D3CCCEFCFA19B807ACC7D /* Pods-shaderism.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shaderism.debug.xcconfig"; path = "Target Support Files/Pods-shaderism/Pods-shaderism.debug.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = shaderism/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B384BF2317037A84F216D57F /* Pods-shaderism.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shaderism.release.xcconfig"; path = "Target Support Files/Pods-shaderism/Pods-shaderism.release.xcconfig"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		C78C35ACF2AFF30DF0E92256 /* Pods-shaderism.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shaderism.debug.xcconfig"; path = "Target Support Files/Pods-shaderism/Pods-shaderism.debug.xcconfig"; sourceTree = "<group>"; };
+		E6A7D3486220C9CEAB6D709A /* libPods-shaderism.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-shaderism.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = shaderism/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* shaderism-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "shaderism-Bridging-Header.h"; path = "shaderism/shaderism-Bridging-Header.h"; sourceTree = "<group>"; };
+		FB39952CF0C02E5D84A2BEC7 /* Pods-shaderism.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shaderism.release.xcconfig"; path = "Target Support Files/Pods-shaderism/Pods-shaderism.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,13 +37,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68C0943BBDFCB388A98B99A6 /* libPods-shaderism.a in Frameworks */,
+				B6C4D0AA7560FD85FC2A9315 /* libPods-shaderism.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		013869B91214D719C5FCD113 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				739D3CCCEFCFA19B807ACC7D /* Pods-shaderism.debug.xcconfig */,
+				FB39952CF0C02E5D84A2BEC7 /* Pods-shaderism.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		0D2B567C34B0394C293CDBC3 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				0DD0409CD457D492610FCD18 /* shaderism */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
+		0DD0409CD457D492610FCD18 /* shaderism */ = {
+			isa = PBXGroup;
+			children = (
+				31E9F940B636753CAF57ADB2 /* ExpoModulesProvider.swift */,
+			);
+			name = shaderism;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* shaderism */ = {
 			isa = PBXGroup;
 			children = (
@@ -53,7 +79,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				71898F2D776CEE4BEAFF93FA /* PrivacyInfo.xcprivacy */,
+				0454FEDECC476EEC3FAD7A08 /* PrivacyInfo.xcprivacy */,
 			);
 			name = shaderism;
 			sourceTree = "<group>";
@@ -62,25 +88,9 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				1510D5C541BB93CD78ADC8AC /* libPods-shaderism.a */,
+				E6A7D3486220C9CEAB6D709A /* libPods-shaderism.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3B735B00E1E3891462819754 /* shaderism */ = {
-			isa = PBXGroup;
-			children = (
-				468566B7AF49B03CD46BCAC6 /* ExpoModulesProvider.swift */,
-			);
-			name = shaderism;
-			sourceTree = "<group>";
-		};
-		6BFEC7AE54280C4231C85AF6 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				3B735B00E1E3891462819754 /* shaderism */,
-			);
-			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -90,16 +100,6 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
-		839D794C8B7B5A610E158014 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C78C35ACF2AFF30DF0E92256 /* Pods-shaderism.debug.xcconfig */,
-				B384BF2317037A84F216D57F /* Pods-shaderism.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
@@ -107,8 +107,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				839D794C8B7B5A610E158014 /* Pods */,
-				6BFEC7AE54280C4231C85AF6 /* ExpoModulesProviders */,
+				013869B91214D719C5FCD113 /* Pods */,
+				0D2B567C34B0394C293CDBC3 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -140,13 +140,12 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "shaderism" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				85F770738E2037D5F18D09CC /* [Expo] Configure project */,
+				F9788422C73D3448B7C501AD /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				6F1CA1BCE80FE42651F1F27F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,7 +195,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				A487104C55DF724DFFDA2C9F /* PrivacyInfo.xcprivacy in Resources */,
+				D4286CD8FB003FC6F97DDDA6 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,24 +239,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6F1CA1BCE80FE42651F1F27F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-shaderism/Pods-shaderism-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-shaderism/Pods-shaderism-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,7 +275,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-shaderism/Pods-shaderism-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		85F770738E2037D5F18D09CC /* [Expo] Configure project */ = {
+		F9788422C73D3448B7C501AD /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -321,7 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				261F4A4DD45EB66321FDEBB8 /* ExpoModulesProvider.swift in Sources */,
+				8C01C504CBACBEFE640300AB /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +311,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C78C35ACF2AFF30DF0E92256 /* Pods-shaderism.debug.xcconfig */;
+			baseConfigurationReference = 739D3CCCEFCFA19B807ACC7D /* Pods-shaderism.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -367,7 +348,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B384BF2317037A84F216D57F /* Pods-shaderism.release.xcconfig */;
+			baseConfigurationReference = FB39952CF0C02E5D84A2BEC7 /* Pods-shaderism.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -458,7 +439,7 @@
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
-				USE_HERMES = true;
+				USE_HERMES = false;
 			};
 			name = Debug;
 		};
@@ -515,7 +496,7 @@
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
-				USE_HERMES = true;
+				USE_HERMES = false;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

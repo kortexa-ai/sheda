@@ -7,6 +7,7 @@ const config: ExpoConfig = {
   version: "0.0.1",
 
   newArchEnabled: true,
+  jsEngine: "jsc",
   experiments: {
     reactCanary: true,
     turboModules: true
