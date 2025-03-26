@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "shaderism.app"
-               BlueprintName = "shaderism"
-               ReferencedContainer = "container:shaderism.xcodeproj">
+               BuildableName = "sheda.app"
+               BlueprintName = "sheda"
+               ReferencedContainer = "container:sheda.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "shaderismTests.xctest"
-               BlueprintName = "shaderismTests"
-               ReferencedContainer = "container:shaderism.xcodeproj">
+               BuildableName = "shedaTests.xctest"
+               BlueprintName = "shedaTests"
+               ReferencedContainer = "container:sheda.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "shaderism.app"
-            BlueprintName = "shaderism"
-            ReferencedContainer = "container:shaderism.xcodeproj">
+            BuildableName = "sheda.app"
+            BlueprintName = "sheda"
+            ReferencedContainer = "container:sheda.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "shaderism.app"
-            BlueprintName = "shaderism"
-            ReferencedContainer = "container:shaderism.xcodeproj">
+            BuildableName = "sheda.app"
+            BlueprintName = "sheda"
+            ReferencedContainer = "container:sheda.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -2,8 +2,8 @@ import 'ts-node/register';
 import { ExpoConfig } from 'expo/config';
 
 const config: ExpoConfig = {
-  name: "shaderism",
-  slug: "shaderism",
+  name: "sheda",
+  slug: "sheda",
   version: "0.1.0",
 
   newArchEnabled: true,
@@ -15,7 +15,7 @@ const config: ExpoConfig = {
   platforms: ["ios", "android", "web"],
 
   orientation: "default",
-  scheme: "shaderism",
+  scheme: "sheda",
   icon: "./assets/icon.png",
   splash: {
     image: "./assets/splash-icon.png",
@@ -25,11 +25,11 @@ const config: ExpoConfig = {
 
   ios: {
     appleTeamId: "C49792BN94",
-    bundleIdentifier: "ai.kortexa.shaderism",
+    bundleIdentifier: "ai.kortexa.sheda",
     buildNumber: "1"
   },
   android: {
-    package: "ai.kortexa.shaderism",
+    package: "ai.kortexa.sheda",
     versionCode: 1,
     adaptiveIcon: {
       foregroundImage: "./assets/adaptive-icon.png",

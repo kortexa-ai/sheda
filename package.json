@@ -1,5 +1,5 @@
 {
-  "name": "shaderism",
+  "name": "sheda",
   "version": "0.1.0",
   "description": "React Native | Expo | three.js | react-three/fiber | react-three/rapier",
   "copyright": "Copyright © 2025 kortexa.ai",
@@ -13,7 +13,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kortexa-ai/shaderism.git"
+    "url": "git+https://github.com/kortexa-ai/sheda.git"
   },
   "main": "index.js",
   "scripts": {
