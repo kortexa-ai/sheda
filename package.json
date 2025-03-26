@@ -11,11 +11,19 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "macos": "react-native run-macos",
+    "windows": "@react-native-community/cli run-windows",
     "pod:install:ios": "pod install --project-directory=ios",
     "pod:install:macos": "pod install --project-directory=macos",
     "build:android": "cd android && ./gradlew assembleDebug --warning-mode all",
     "build:ios": "react-native build-ios --scheme shaderism --mode Debug --device",
     "build:macos": "react-native build-macos --scheme shaderism --mode Debug"
+  },
+  "react-native-windows": {
+    "init-windows": {
+      "name": "shaderism",
+      "namespace": "shaderism",
+      "template": "old/uwp-cpp-app"
+    }
   },
   "dependencies": {
     "react": "19.0.0",
@@ -23,6 +31,7 @@
     "react-native-gesture-handler": "^2.24.0",
     "react-native-macos": "^0.78.1",
     "react-native-safe-area-context": "^5.3.0",
+    "react-native-windows": "^0.78.2",
     "three": "^0.174.0"
   },
   "devDependencies": {
@@ -43,6 +52,7 @@
     "@types/three": "^0.174.0",
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
+    "metro-config": "^0.81.4",
     "prettier": "2.8.8",
     "react-test-renderer": "19.0.0",
     "typescript": "5.0.4"
