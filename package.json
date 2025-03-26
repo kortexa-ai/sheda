@@ -1,17 +1,24 @@
 {
-  "name": "shaderism",
+  "name": "@kortexa-ai/shaderism",
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "lint": "eslint .",
+    "tsc": "tsc --noEmit",
+    "test": "jest",
+    "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "lint": "eslint .",
-    "start": "react-native start",
-    "test": "jest"
+    "pod:install:ios": "pod install --project-directory=ios",
+    "pod:install:macos": "pod install --project-directory=macos",
+    "build:android": "cd android && ./gradlew assembleDebug --warning-mode all",
+    "build:ios": "react-native build-ios --scheme shaderism --mode Debug --device",
+    "build:macos": "react-native build-macos --scheme shaderism --mode Debug"
   },
   "dependencies": {
     "react": "19.0.0",
-    "react-native": "0.78.1"
+    "react-native": "0.78.1",
+    "react-native-safe-area-context": "^5.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -25,6 +32,7 @@
     "@react-native/metro-config": "0.78.1",
     "@react-native/typescript-config": "0.78.1",
     "@types/jest": "^29.5.13",
+    "@types/node": "^22.13.13",
     "@types/react": "^19.0.0",
     "@types/react-test-renderer": "^19.0.0",
     "eslint": "^8.19.0",

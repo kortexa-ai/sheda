@@ -1,4 +1,10 @@
 {
   "name": "shaderism",
-  "displayName": "shaderism"
+  "displayName": "shaderism",
+  "ios": {
+    "bundleIdentifier": "ai.kortexa.shaderism"
+  },
+  "macos": {
+    "bundleIdentifier": "ai.kortexa.shaderism"
+  }
 }
