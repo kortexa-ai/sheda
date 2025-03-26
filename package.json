@@ -10,6 +10,7 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "macos": "react-native run-macos",
     "pod:install:ios": "pod install --project-directory=ios",
     "pod:install:macos": "pod install --project-directory=macos",
     "build:android": "cd android && ./gradlew assembleDebug --warning-mode all",
