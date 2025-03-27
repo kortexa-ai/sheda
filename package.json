@@ -27,6 +27,11 @@
     "ios:release": "npx expo run:ios --device --no-bundler --configuration Release",
     "web": "expo run:web"
   },
+  "expo": {
+    "autolinking": {
+      "nativeModulesDir": "native"
+    }
+  },
   "dependencies": {
     "@react-three/drei": "^10.0.5",
     "@react-three/fiber": "^9.1.0",

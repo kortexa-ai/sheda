@@ -3,9 +3,11 @@ import { Appearance, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Canvas } from '@react-three/fiber/native';
+// Don't use the hooks from @react-three/fiber/native !!!
 import { useFrame } from '@react-three/fiber';
 import { Environment } from '@react-three/drei/native';
 import useOrbitControls from 'r3f-native-orbitcontrols';
+import { ShaderBackground } from './components/ShaderBackground';
 
 const Box = () => {
     useFrame(({ scene }) => {
@@ -43,6 +45,12 @@ const Scene = () => {
     );
 };
 
+/*
+Important! Do not remove these from the Canvas element,
+or the underlying GLView will not render
+    backgroundColor: 'black',
+    shadowColor: 'black',
+*/
 export default function App() {
     const colorScheme = Appearance.getColorScheme();
     const isDarkMode = colorScheme === 'dark';
@@ -50,33 +58,84 @@ export default function App() {
 
     return (
         <SafeAreaProvider>
-            <GestureHandlerRootView>
+            <GestureHandlerRootView style={{
+                flex: 1,
+                position: 'relative',
+                width: '100%',
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}>
+                <View style={{
+                    flex: 1,
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    zIndex: 0,
+                }}>
+                    <Canvas
+                        orthographic={true}
+                        style={{
+                            backgroundColor: 'black',
+                            shadowColor: 'black',
+                            width: '100%',
+                            height: '100%',
+                        }}
+                        gl={{
+                            debug: {
+                                checkShaderErrors: false,
+                                onShaderError: null,
+                            },
+                        }}
+                    >
+                        <ShaderBackground />
+                    </Canvas>
+                </View>
+
                 <SafeAreaView
-                    style={{ backgroundColor: isDarkMode ? 'black' : 'white', height: '100%', width: '100%' }}
+                    style={{
+                        height: '100%',
+                        width: '100%',
+                        zIndex: 1,
+                    }}
                 >
-                    <View style={{ flex: 1, position: 'relative', margin: 16 }} {...events}>
-                        <Canvas
-                            style={{
-                                backgroundColor: isDarkMode ? 'black' : 'white',
-                                borderWidth: 1,
-                                borderColor: isDarkMode ? 'white' : 'black',
-                                shadowColor: isDarkMode ? 'white' : 'black',
-                                shadowOffset: { width: 4, height: 4 },
-                                shadowOpacity: 0.4,
-                                shadowRadius: 6,
-                                width: '100%',
-                                height: '100%',
-                            }}
-                            gl={{
-                                debug: {
-                                    checkShaderErrors: false,
-                                    onShaderError: null,
-                                },
-                            }}
-                        >
-                            <Scene />
-                            <OrbitControls />
-                        </Canvas>
+                    <View
+                        style={{
+                            flex: 1,
+                            position: 'relative',
+                            margin: 16,
+                            alignItems: 'center'
+                        }}
+                        {...events}
+                    >
+                        <View style={{
+                            backgroundColor: 'transparent',
+                            width: '100%',
+                            height: '50%',
+                        }}>
+                            <Canvas
+                                style={{
+                                    backgroundColor: 'transparent',
+                                    borderWidth: 0,
+                                    borderColor: 'black',
+                                    shadowColor: 'white',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 0.4,
+                                    shadowRadius: 10,
+                                    width: '100%',
+                                    height: '100%',
+                                }}
+                                gl={{
+                                    debug: {
+                                        checkShaderErrors: false,
+                                        onShaderError: null,
+                                    },
+                                }}
+                            >
+                                <Scene />
+                                <OrbitControls />
+                            </Canvas>
+                        </View>
                     </View>
                 </SafeAreaView>
             </GestureHandlerRootView>
