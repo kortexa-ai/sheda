@@ -12,6 +12,7 @@ import { SceneCanvas } from './components/SceneCanvas';
 
 import starNest from './components/glsl/starnest.frag.glsl';
 import fire from './components/glsl/fire.frag.glsl';
+import thoughts from './components/glsl/thoughts.frag.glsl';
 
 const Box = () => {
     useFrame(({ scene }) => {
@@ -58,8 +59,9 @@ export default function App() {
                 position: 'relative',
                 width: '100%',
                 height: '100%',
+                backgroundColor: 'black',
             }}>
-                <ShaderBackground fragmentShader={starNest} />
+                <ShaderBackground fragmentShader={thoughts} />
 
                 <SafeAreaView
                     style={{
@@ -84,7 +86,7 @@ export default function App() {
                             }}
                             {...events}
                         >
-                            <FrostedPanel
+                            {/* <FrostedPanel
                                 intensity={5}
                                 tintColor="red"
                                 tintOpacity={0.2}
@@ -97,12 +99,12 @@ export default function App() {
                                 intensity={5}
                                 tintColor="green"
                                 tintOpacity={0.2}
-                            >
-                                <SceneCanvas>
-                                    <Scene />
-                                    <OrbitControls />
-                                </SceneCanvas>
-                            </FrostedPanel>
+                            > */
+                                // <SceneCanvas>
+                                //     <Scene />
+                                //     <OrbitControls />
+                                // </SceneCanvas>
+                            /* </FrostedPanel> */}
                         </Panel>
 
                         <FrostedPanel
@@ -110,10 +112,10 @@ export default function App() {
                             tintColor="yellow"
                             tintOpacity={0.2}
                         >
-                            <ShaderBackground fragmentShader={fire} />
-                            <SceneCanvas>
+                            <ShaderBackground fragmentShader={thoughts} />
+                            {/* <SceneCanvas>
                                 <Scene />
-                            </SceneCanvas>
+                            </SceneCanvas> */}
                         </FrostedPanel>
 
                     </View>

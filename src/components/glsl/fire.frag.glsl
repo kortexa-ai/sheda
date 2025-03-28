@@ -1,5 +1,4 @@
-// three.js port of Fire shadertoy by @Xor
-// Original - https://x.com/XorDev/status/1903168199069216954
+// Shadertoy by @Xor https://x.com/XorDev/status/1903168199069216954
 
 uniform float time;
 uniform vec2 resolution;
