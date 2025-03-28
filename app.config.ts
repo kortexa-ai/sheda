@@ -11,7 +11,15 @@ const config: ExpoConfig = {
     reactCanary: true,
     turboModules: true
   },
-
+  plugins: [
+    [
+      "expo-asset",
+      {
+        assets: [
+        ],
+      }
+    ],
+  ],
   platforms: ["ios", "android", "web"],
 
   orientation: "default",

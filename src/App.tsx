@@ -8,6 +8,7 @@ import { useFrame } from '@react-three/fiber';
 import { Environment } from '@react-three/drei/native';
 import useOrbitControls from 'r3f-native-orbitcontrols';
 import { ShaderBackground } from './components/ShaderBackground';
+import { FrostedPanel } from './components/FrostedPanel';
 
 const Box = () => {
     useFrame(({ scene }) => {
@@ -136,6 +137,32 @@ export default function App() {
                                 <OrbitControls />
                             </Canvas>
                         </View>
+
+                        <FrostedPanel>
+                            <Canvas
+                                style={{
+                                    backgroundColor: 'transparent',
+                                    borderWidth: 0,
+                                    borderColor: 'black',
+                                    shadowColor: 'white',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 0.4,
+                                    shadowRadius: 10,
+                                    width: '100%',
+                                    height: '100%',
+                                }}
+                                gl={{
+                                    debug: {
+                                        checkShaderErrors: false,
+                                        onShaderError: null,
+                                    },
+                                }}
+                            >
+                                <Scene />
+                                <OrbitControls />
+                            </Canvas>
+                        </FrostedPanel>
+
                     </View>
                 </SafeAreaView>
             </GestureHandlerRootView>

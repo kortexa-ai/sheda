@@ -5,6 +5,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+    "module": "ESNext",
     "esModuleInterop": true,
     "allowJs": true,
     "jsx": "react-native",

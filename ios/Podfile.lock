@@ -248,6 +248,8 @@ PODS:
     - Yoga
   - ExpoAsset (12.0.0-canary-20250320-7a205d3):
     - ExpoModulesCore
+  - ExpoBlur (14.0.3):
+    - ExpoModulesCore
   - ExpoFileSystem (19.0.0-canary-20250320-7a205d3):
     - ExpoModulesCore
   - ExpoFont (14.0.0-canary-20250320-7a205d3):
@@ -2052,6 +2054,7 @@ DEPENDENCIES:
   - expo-dev-menu (from `../node_modules/expo-dev-menu`)
   - expo-dev-menu-interface (from `../node_modules/expo-dev-menu-interface/ios`)
   - ExpoAsset (from `../node_modules/expo-asset/ios`)
+  - ExpoBlur (from `../node_modules/expo-blur/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
   - ExpoFont (from `../node_modules/expo-font/ios`)
   - ExpoGL (from `../node_modules/expo-gl`)
@@ -2158,6 +2161,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-dev-menu-interface/ios"
   ExpoAsset:
     :path: "../node_modules/expo-asset/ios"
+  ExpoBlur:
+    :path: "../node_modules/expo-blur/ios"
   ExpoFileSystem:
     :path: "../node_modules/expo-file-system/ios"
   ExpoFont:
@@ -2324,6 +2329,7 @@ SPEC CHECKSUMS:
   expo-dev-menu: a168deb4666af21fc61f06fb604d692b9ea8d537
   expo-dev-menu-interface: 88552103aca20fe1e2ee771936b1eb02fb1204f3
   ExpoAsset: 6b069dee1222573c10b96bc3d74baafef419e7eb
+  ExpoBlur: 392c1207f71d0ecf22371621c1fbd44ba84d9742
   ExpoFileSystem: 0cb748ca163f8dc2dd18bb8d9d0b99860c538b45
   ExpoFont: 854badd88596909634ca14c417dc1d32dd49286e
   ExpoGL: 258f277a0bd983aa6b02b59d27dd1231ee64631b
