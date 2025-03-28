@@ -1,39 +1,35 @@
 import { ShaderMaterial } from 'three';
-// Don't use the hooks from @react-three/fiber/native !!!
-import { extend, useFrame, useThree } from '@react-three/fiber';
-import { OrthographicCamera } from '@react-three/drei';
+import { extend, useFrame, useThree } from '@react-three/fiber/native';
+import { OrthographicCamera } from '@react-three/drei/native';
 import { useRef } from 'react';
 
-import starNest from './glsl/starnest.glsl';
+import defaultVertexShader from './glsl/default.vert.glsl';
+import defaultFragmentShader from './glsl/default.frag.glsl';
+import { SceneCanvas } from './SceneCanvas';
 
 // Register ShaderMaterial with react-three-fiber
 extend({ ShaderMaterial });
 
-// Default vertex shader (simple pass-through)
-const defaultVertexShader = `
-  varying vec2 vUv;
-  void main() {
-    vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-  }
-`;
-
-// Default fragment shader
-const defaultFragmentShader = starNest;
-
-type BackgroundSceneProps = {
-    width: number;
-    height: number;
+type ShaderBackgroundProps = {
+    width?: number;
+    height?: number;
     vertexShader?: string;
     fragmentShader?: string;
 };
 
-const BackgroundScene = ({
+function ShaderScene({
     width,
     height,
     vertexShader = defaultVertexShader,
     fragmentShader = defaultFragmentShader,
-}: BackgroundSceneProps) => {
+}: ShaderBackgroundProps) {
+    const { size: { width: useWidth, height: useHeight } } = useThree();
+    if (!width) {
+        width = useWidth;
+    }
+    if (!height) {
+        height = useHeight;
+    }
     const shaderRef = useRef<ShaderMaterial>(null);
 
     // Update shader uniforms on each frame
@@ -77,14 +73,29 @@ const BackgroundScene = ({
             </mesh>
         </>
     );
-};
+}
 
-export function ShaderBackground() {
-    const { size: { width, height } } = useThree();
+export function ShaderBackground({
+    width,
+    height,
+    vertexShader,
+    fragmentShader,
+}: ShaderBackgroundProps) {
     return (
-        <BackgroundScene
-            width={width}
-            height={height}
-        />
+        <SceneCanvas
+            orthographic={true}
+            style={{
+                // Important! Do not remove, or the canvas will not render
+                position: 'absolute',
+                zIndex: 0,
+            }}
+        >
+            <ShaderScene
+                width={width}
+                height={height}
+                vertexShader={vertexShader}
+                fragmentShader={fragmentShader}
+            />
+        </SceneCanvas>
     );
 }

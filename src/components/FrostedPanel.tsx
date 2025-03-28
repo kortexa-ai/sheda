@@ -1,34 +1,54 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { BlurView } from 'expo-blur';
+import { ColorValue, StyleSheet, ViewStyle, ViewProps } from 'react-native';
+import { BlurView, BlurTint } from 'expo-blur';
+import { Panel } from './Panel';
+import Color from 'color';
 
-export function FrostedPanel({ children }: { children?: React.ReactNode }) {
+interface FrostedPanelProps extends ViewProps {
+    blurStyle?: Omit<ViewStyle, 'backgroundColor' | 'overflow'>;
+    tint?: BlurTint;
+    tintColor?: ColorValue;
+    tintOpacity?: number;
+    intensity?: number;
+}
+
+export function FrostedPanel({
+    children,
+    style,
+    blurStyle,
+    tint = 'light',
+    tintColor = 'transparent',
+    tintOpacity = 0.0,
+    intensity = 30,
+    ...props
+}: FrostedPanelProps) {
+    // Convert tintColor and tintOpacity to rgba format
+    const backgroundColor = Color(tintColor).alpha(tintOpacity).string();
+
+    const frostedStyle: ViewStyle = {
+        ...styles.frosted,
+        ...blurStyle,
+        backgroundColor,
+    };
+
     return (
-        <View style={styles.container}>
-            <BlurView intensity={30} tint="light" style={styles.frosted}>
+        <Panel
+            style={style}
+            {...props}
+        >
+            <BlurView intensity={intensity} tint={tint} style={frostedStyle}>
                 {children}
             </BlurView>
-        </View>
+        </Panel>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: 16,
-        width: '100%',
-        height: '50%',
-    },
     frosted: {
         width: '100%',
         height: '100%',
         borderRadius: 20,
         borderWidth: 1,
         borderColor: 'rgba(255, 255, 255, 0.3)',
-        // Important! Do not remove, it's needed for colored tint
-        backgroundColor: 'rgba(255, 197, 144, 0.3',
         // Important! Do not remove, it's needed for rounded corners to work
         overflow: 'hidden',
     },

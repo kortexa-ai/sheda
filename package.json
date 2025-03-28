@@ -36,6 +36,7 @@
     "@react-three/drei": "^10.0.5",
     "@react-three/fiber": "^9.1.0",
     "@react-three/rapier": "^2.0.0",
+    "color": "^5.0.0",
     "expo": "^53.0.0-canary-20250320-7a205d3",
     "expo-asset": "12.0.0-canary-20250320-7a205d3",
     "expo-blur": "^14.0.3",
@@ -61,6 +62,7 @@
     "@react-native/eslint-plugin": "^0.78.1",
     "@react-native/metro-config": "^0.78.1",
     "@react-native/typescript-config": "^0.78.1",
+    "@types/color": "^4.2.0",
     "@types/node": "^22.13.13",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.4",
@@ -83,5 +85,6 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

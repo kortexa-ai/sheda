@@ -1,14 +1,16 @@
 import { Suspense } from 'react';
-import { Appearance, View } from 'react-native';
+import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { Canvas } from '@react-three/fiber/native';
-// Don't use the hooks from @react-three/fiber/native !!!
-import { useFrame } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber/native';
 import { Environment } from '@react-three/drei/native';
 import useOrbitControls from 'r3f-native-orbitcontrols';
 import { ShaderBackground } from './components/ShaderBackground';
 import { FrostedPanel } from './components/FrostedPanel';
+import { SceneCanvas } from './components/SceneCanvas';
+
+import starNest from './components/glsl/starnest.frag.glsl';
+import { Panel } from './components/Panel';
 
 const Box = () => {
     useFrame(({ scene }) => {
@@ -46,52 +48,17 @@ const Scene = () => {
     );
 };
 
-/*
-Important! Do not remove these from the Canvas element,
-or the underlying GLView will not render
-    backgroundColor: 'black',
-    shadowColor: 'black',
-*/
 export default function App() {
-    const colorScheme = Appearance.getColorScheme();
-    const isDarkMode = colorScheme === 'dark';
     const [OrbitControls, events] = useOrbitControls();
 
     return (
         <SafeAreaProvider>
             <GestureHandlerRootView style={{
-                flex: 1,
                 position: 'relative',
                 width: '100%',
                 height: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
             }}>
-                <View style={{
-                    flex: 1,
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    zIndex: 0,
-                }}>
-                    <Canvas
-                        orthographic={true}
-                        style={{
-                            backgroundColor: 'black',
-                            shadowColor: 'black',
-                            width: '100%',
-                            height: '100%',
-                        }}
-                        gl={{
-                            debug: {
-                                checkShaderErrors: false,
-                                onShaderError: null,
-                            },
-                        }}
-                    >
-                        <ShaderBackground />
-                    </Canvas>
-                </View>
+                <ShaderBackground fragmentShader={starNest} />
 
                 <SafeAreaView
                     style={{
@@ -104,63 +71,47 @@ export default function App() {
                         style={{
                             flex: 1,
                             position: 'relative',
+                            alignItems: 'stretch',
+                            justifyContent: 'space-evenly',
                             margin: 16,
-                            alignItems: 'center'
+                            gap: 16,
                         }}
-                        {...events}
                     >
-                        <View style={{
-                            backgroundColor: 'transparent',
-                            width: '100%',
-                            height: '50%',
-                        }}>
-                            <Canvas
-                                style={{
-                                    backgroundColor: 'transparent',
-                                    borderWidth: 0,
-                                    borderColor: 'black',
-                                    shadowColor: 'white',
-                                    shadowOffset: { width: 4, height: 4 },
-                                    shadowOpacity: 0.4,
-                                    shadowRadius: 10,
-                                    width: '100%',
-                                    height: '100%',
-                                }}
-                                gl={{
-                                    debug: {
-                                        checkShaderErrors: false,
-                                        onShaderError: null,
-                                    },
-                                }}
+                        <Panel
+                            style={{
+                                flexDirection: 'row',
+                            }}
+                            {...events}
+                        >
+                            <FrostedPanel
+                                intensity={5}
+                                tintColor="red"
+                                tintOpacity={0.2}
                             >
-                                <Scene />
-                                <OrbitControls />
-                            </Canvas>
-                        </View>
+                                <SceneCanvas>
+                                    <Scene />
+                                </SceneCanvas>
+                            </FrostedPanel>
+                            <FrostedPanel
+                                intensity={5}
+                                tintColor="green"
+                                tintOpacity={0.2}
+                            >
+                                <SceneCanvas>
+                                    <Scene />
+                                    <OrbitControls />
+                                </SceneCanvas>
+                            </FrostedPanel>
+                        </Panel>
 
-                        <FrostedPanel>
-                            <Canvas
-                                style={{
-                                    backgroundColor: 'transparent',
-                                    borderWidth: 0,
-                                    borderColor: 'black',
-                                    shadowColor: 'white',
-                                    shadowOffset: { width: 4, height: 4 },
-                                    shadowOpacity: 0.4,
-                                    shadowRadius: 10,
-                                    width: '100%',
-                                    height: '100%',
-                                }}
-                                gl={{
-                                    debug: {
-                                        checkShaderErrors: false,
-                                        onShaderError: null,
-                                    },
-                                }}
-                            >
+                        <FrostedPanel
+                            intensity={5}
+                            tintColor="yellow"
+                            tintOpacity={0.2}
+                        >
+                            <SceneCanvas>
                                 <Scene />
-                                <OrbitControls />
-                            </Canvas>
+                            </SceneCanvas>
                         </FrostedPanel>
 
                     </View>
