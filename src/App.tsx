@@ -7,10 +7,11 @@ import { Environment } from '@react-three/drei/native';
 import useOrbitControls from 'r3f-native-orbitcontrols';
 import { ShaderBackground } from './components/ShaderBackground';
 import { FrostedPanel } from './components/FrostedPanel';
+import { Panel } from './components/Panel';
 import { SceneCanvas } from './components/SceneCanvas';
 
 import starNest from './components/glsl/starnest.frag.glsl';
-import { Panel } from './components/Panel';
+import fire from './components/glsl/fire.frag.glsl';
 
 const Box = () => {
     useFrame(({ scene }) => {
@@ -109,6 +110,7 @@ export default function App() {
                             tintColor="yellow"
                             tintOpacity={0.2}
                         >
+                            <ShaderBackground fragmentShader={fire} />
                             <SceneCanvas>
                                 <Scene />
                             </SceneCanvas>
