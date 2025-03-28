@@ -8,25 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		166200A9845A541E5020A6BE /* libPods-sheda.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C98B8541AB70EEEC038EAA /* libPods-sheda.a */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		5C597995BF4C867ECA7F5063 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 293F3758C409AEAE305B6044 /* PrivacyInfo.xcprivacy */; };
+		658F8E2AA8E157C5F92AB190 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC3BCE616A574DCC9BBF0F /* ExpoModulesProvider.swift */; };
+		AB21D52E82E3C5FF0AE8009E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 2087774913EE883BA9D05281 /* PrivacyInfo.xcprivacy */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		D5B3ED84292B5EF416CFD424 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107E9A727D1E2D2DB886D3A2 /* ExpoModulesProvider.swift */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
+		F4EF739438871C0067128249 /* libPods-sheda.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CA14BC4C4D0094DFDB9C71 /* libPods-sheda.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		107E9A727D1E2D2DB886D3A2 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-sheda/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		05E2A5EA8DB314A944AC4F3D /* Pods-sheda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sheda.release.xcconfig"; path = "Target Support Files/Pods-sheda/Pods-sheda.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* sheda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sheda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = sheda/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = sheda/Info.plist; sourceTree = "<group>"; };
-		253F3356328571B7C5C4EE59 /* Pods-sheda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sheda.debug.xcconfig"; path = "Target Support Files/Pods-sheda/Pods-sheda.debug.xcconfig"; sourceTree = "<group>"; };
-		293F3758C409AEAE305B6044 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = sheda/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		96C98B8541AB70EEEC038EAA /* libPods-sheda.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sheda.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2087774913EE883BA9D05281 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = sheda/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		43CA14BC4C4D0094DFDB9C71 /* libPods-sheda.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sheda.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		71AC3BCE616A574DCC9BBF0F /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-sheda/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = sheda/SplashScreen.storyboard; sourceTree = "<group>"; };
+		B340787CEDC4F4759FE796E6 /* Pods-sheda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sheda.debug.xcconfig"; path = "Target Support Files/Pods-sheda/Pods-sheda.debug.xcconfig"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		BCEA9EFDE5EA244EDB5EED56 /* Pods-sheda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sheda.release.xcconfig"; path = "Target Support Files/Pods-sheda/Pods-sheda.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = sheda/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* sheda-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "sheda-Bridging-Header.h"; path = "sheda/sheda-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -37,13 +37,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				166200A9845A541E5020A6BE /* libPods-sheda.a in Frameworks */,
+				F4EF739438871C0067128249 /* libPods-sheda.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01C859AA7FAF93331E4F6529 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				D64535A74FBD0D5324CFF30C /* sheda */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* sheda */ = {
 			isa = PBXGroup;
 			children = (
@@ -53,7 +61,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				293F3758C409AEAE305B6044 /* PrivacyInfo.xcprivacy */,
+				2087774913EE883BA9D05281 /* PrivacyInfo.xcprivacy */,
 			);
 			name = sheda;
 			sourceTree = "<group>";
@@ -62,17 +70,9 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				96C98B8541AB70EEEC038EAA /* libPods-sheda.a */,
+				43CA14BC4C4D0094DFDB9C71 /* libPods-sheda.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		54325B0201DB035F75B7B572 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				D9877C660E7E3A4E4407D5DE /* sheda */,
-			);
-			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -89,8 +89,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				C48DD9BDBF484A25D69FB7DC /* Pods */,
-				54325B0201DB035F75B7B572 /* ExpoModulesProviders */,
+				E2EEB06D0FBAE8DDDE109E6A /* Pods */,
+				01C859AA7FAF93331E4F6529 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -114,22 +114,22 @@
 			path = sheda/Supporting;
 			sourceTree = "<group>";
 		};
-		C48DD9BDBF484A25D69FB7DC /* Pods */ = {
+		D64535A74FBD0D5324CFF30C /* sheda */ = {
 			isa = PBXGroup;
 			children = (
-				253F3356328571B7C5C4EE59 /* Pods-sheda.debug.xcconfig */,
-				BCEA9EFDE5EA244EDB5EED56 /* Pods-sheda.release.xcconfig */,
+				71AC3BCE616A574DCC9BBF0F /* ExpoModulesProvider.swift */,
+			);
+			name = sheda;
+			sourceTree = "<group>";
+		};
+		E2EEB06D0FBAE8DDDE109E6A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B340787CEDC4F4759FE796E6 /* Pods-sheda.debug.xcconfig */,
+				05E2A5EA8DB314A944AC4F3D /* Pods-sheda.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		D9877C660E7E3A4E4407D5DE /* sheda */ = {
-			isa = PBXGroup;
-			children = (
-				107E9A727D1E2D2DB886D3A2 /* ExpoModulesProvider.swift */,
-			);
-			name = sheda;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "sheda" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				8488B702A3C6908310FBF3EF /* [Expo] Configure project */,
+				DE1D215FDC142066C4CFABFA /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				D5031C97992B9A2546645D2B /* [CP] Embed Pods Frameworks */,
+				CCB10D788A2ECE529F7AE629 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,7 +196,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				5C597995BF4C867ECA7F5063 /* PrivacyInfo.xcprivacy in Resources */,
+				AB21D52E82E3C5FF0AE8009E /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +276,25 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sheda/Pods-sheda-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8488B702A3C6908310FBF3EF /* [Expo] Configure project */ = {
+		CCB10D788A2ECE529F7AE629 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sheda/Pods-sheda-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sheda/Pods-sheda-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE1D215FDC142066C4CFABFA /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -295,24 +313,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-sheda/expo-configure-project.sh\"\n";
 		};
-		D5031C97992B9A2546645D2B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sheda/Pods-sheda-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sheda/Pods-sheda-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -321,7 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				D5B3ED84292B5EF416CFD424 /* ExpoModulesProvider.swift in Sources */,
+				658F8E2AA8E157C5F92AB190 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +330,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 253F3356328571B7C5C4EE59 /* Pods-sheda.debug.xcconfig */;
+			baseConfigurationReference = B340787CEDC4F4759FE796E6 /* Pods-sheda.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -367,7 +367,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BCEA9EFDE5EA244EDB5EED56 /* Pods-sheda.release.xcconfig */;
+			baseConfigurationReference = 05E2A5EA8DB314A944AC4F3D /* Pods-sheda.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

@@ -6,20 +6,13 @@ const config: ExpoConfig = {
     slug: "sheda",
     version: "0.1.0",
 
+    jsEngine: "hermes",
     newArchEnabled: true,
     experiments: {
         reactCanary: true,
         turboModules: true
     },
     plugins: [
-        [
-            "expo-build-properties",
-            {
-                ios: {
-                    useFrameworks: "static",
-                }
-            }
-        ],
         [
             "expo-asset",
             {
@@ -31,6 +24,7 @@ const config: ExpoConfig = {
     ],
     platforms: ["ios", "web"],
 
+    userInterfaceStyle: "automatic",
     orientation: "default",
     scheme: "sheda",
     icon: "./assets/icon.png",

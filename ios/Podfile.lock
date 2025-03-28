@@ -246,6 +246,8 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - ExpoAppleAuthentication (7.1.4-canary-20250320-7a205d3):
+    - ExpoModulesCore
   - ExpoAsset (12.0.0-canary-20250320-7a205d3):
     - ExpoModulesCore
   - ExpoBlur (14.0.3):
@@ -258,6 +260,8 @@ PODS:
     - ExpoModulesCore
     - ReactCommon/turbomodule/core
   - ExpoKeepAwake (15.0.0-canary-20250320-7a205d3):
+    - ExpoModulesCore
+  - ExpoLinking (7.1.0-canary-20250320-7a205d3):
     - ExpoModulesCore
   - ExpoModulesCore (3.0.0-canary-20250320-7a205d3):
     - DoubleConversion
@@ -2053,12 +2057,14 @@ DEPENDENCIES:
   - expo-dev-launcher (from `../node_modules/expo-dev-launcher`)
   - expo-dev-menu (from `../node_modules/expo-dev-menu`)
   - expo-dev-menu-interface (from `../node_modules/expo-dev-menu-interface/ios`)
+  - ExpoAppleAuthentication (from `../node_modules/expo-apple-authentication/ios`)
   - ExpoAsset (from `../node_modules/expo-asset/ios`)
   - ExpoBlur (from `../node_modules/expo-blur/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
   - ExpoFont (from `../node_modules/expo-font/ios`)
   - ExpoGL (from `../node_modules/expo-gl`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
+  - ExpoLinking (from `../node_modules/expo-linking/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - EXUpdatesInterface (from `../node_modules/expo-updates-interface/ios`)
   - fast_float (from `../node_modules/react-native/third-party-podspecs/fast_float.podspec`)
@@ -2159,6 +2165,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-dev-menu"
   expo-dev-menu-interface:
     :path: "../node_modules/expo-dev-menu-interface/ios"
+  ExpoAppleAuthentication:
+    :path: "../node_modules/expo-apple-authentication/ios"
   ExpoAsset:
     :path: "../node_modules/expo-asset/ios"
   ExpoBlur:
@@ -2171,6 +2179,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-gl"
   ExpoKeepAwake:
     :path: "../node_modules/expo-keep-awake/ios"
+  ExpoLinking:
+    :path: "../node_modules/expo-linking/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core"
   EXUpdatesInterface:
@@ -2328,12 +2338,14 @@ SPEC CHECKSUMS:
   expo-dev-launcher: fa181a1e31ba4872743899673a753d1cf5912b2e
   expo-dev-menu: a168deb4666af21fc61f06fb604d692b9ea8d537
   expo-dev-menu-interface: 88552103aca20fe1e2ee771936b1eb02fb1204f3
+  ExpoAppleAuthentication: 77f582543ae844fa77053b27cc215869913481ae
   ExpoAsset: 6b069dee1222573c10b96bc3d74baafef419e7eb
   ExpoBlur: 392c1207f71d0ecf22371621c1fbd44ba84d9742
   ExpoFileSystem: 0cb748ca163f8dc2dd18bb8d9d0b99860c538b45
   ExpoFont: 854badd88596909634ca14c417dc1d32dd49286e
   ExpoGL: 258f277a0bd983aa6b02b59d27dd1231ee64631b
   ExpoKeepAwake: 136cbddd4f65b2c6954850663937c150c0ddc7ab
+  ExpoLinking: 1cfd98ee653b5276df940b529065a59ee147414a
   ExpoModulesCore: af79b64500260c536d16e38c4ac54351a762c46a
   EXUpdatesInterface: 31e6928478230201e415dab87dcd979677312749
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
