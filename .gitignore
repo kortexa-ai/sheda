@@ -1,5 +1,11 @@
 # Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
+# configuration
+.env
+.env.*
+!.env.example
+*.local
+
 # dependencies
 node_modules/
 
@@ -20,6 +26,12 @@ expo-env.d.ts
 
 # Metro
 .metro-health-check*
+
+# Firebase
+.firebase/
+*service-account*.json
+*serviceAccount*.json
+GoogleService-Info.plist
 
 # debug
 npm-debug.*

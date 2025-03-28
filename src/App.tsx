@@ -1,57 +1,34 @@
-import { Suspense } from 'react';
 import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { useFrame } from '@react-three/fiber/native';
-import { Environment } from '@react-three/drei/native';
-import useOrbitControls from 'r3f-native-orbitcontrols';
-import { ShaderBackground } from './components/ShaderBackground';
-import { FrostedPanel } from './components/FrostedPanel';
-import { Panel } from './components/Panel';
-import { SceneCanvas } from './components/SceneCanvas';
+// import useOrbitControls from 'r3f-native-orbitcontrols';
 
-import starNest from './components/glsl/starnest.frag.glsl';
-import fire from './components/glsl/fire.frag.glsl';
+import { parse, useLinkingURL } from 'expo-linking';
+
+import './styles/App.css';
+
+import { Panel } from './components/Panel';
+import { FrostedPanel } from './components/FrostedPanel';
+import { ShaderBackground } from './components/ShaderBackground';
+// import { SceneCanvas } from './components/SceneCanvas';
+// import { TestScene } from './TestScene';
+
+// import starNest from './components/glsl/starnest.frag.glsl';
+// import fire from './components/glsl/fire.frag.glsl';
 import thoughts from './components/glsl/thoughts.frag.glsl';
 
-const Box = () => {
-    useFrame(({ scene }) => {
-        const box = scene.getObjectByName('box')
-        if (box) {
-            box.rotation.x += 0.01
-            box.rotation.y += 0.01
-        }
-    });
-
-    return (
-        <mesh name='box'>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshPhysicalMaterial color='blue' />
-        </mesh>
-    )
-}
-
-const Scene = () => {
-    // If you need to useThree, you can do so here
-    return (
-        <>
-            <ambientLight intensity={Math.PI / 2} />
-            <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-            <Suspense fallback={null}>
-                {/*
-                    Environment presets work partially
-                    The environment pngs are not loading
-                    but the lights are working
-                */}
-                <Environment preset="dawn" />
-                <Box />
-            </Suspense>
-        </>
-    );
-};
-
 export default function App() {
-    const [OrbitControls, events] = useOrbitControls();
+    // const [OrbitControls, events] = useOrbitControls();
+    const url = useLinkingURL();
+    if (url) {
+        const { hostname, path, queryParams } = parse(url);
+
+        console.log(
+            `Linked to app with hostname: ${hostname}, path: ${path} and data: ${JSON.stringify(
+                queryParams
+            )}`
+        );
+    }
 
     return (
         <SafeAreaProvider>
@@ -84,7 +61,7 @@ export default function App() {
                             style={{
                                 flexDirection: 'row',
                             }}
-                            {...events}
+                            // {...events}
                         >
                             {/* <FrostedPanel
                                 intensity={5}
@@ -92,19 +69,19 @@ export default function App() {
                                 tintOpacity={0.2}
                             >
                                 <SceneCanvas>
-                                    <Scene />
+                                    <TestScene />
                                 </SceneCanvas>
                             </FrostedPanel>
                             <FrostedPanel
                                 intensity={5}
                                 tintColor="green"
                                 tintOpacity={0.2}
-                            > */
-                                // <SceneCanvas>
-                                //     <Scene />
-                                //     <OrbitControls />
-                                // </SceneCanvas>
-                            /* </FrostedPanel> */}
+                            > */}
+                                {/* <SceneCanvas>
+                                    <TestScene />
+                                    <OrbitControls />
+                                </SceneCanvas> */}
+                            {/* </FrostedPanel> */}
                         </Panel>
 
                         <FrostedPanel
@@ -114,7 +91,7 @@ export default function App() {
                         >
                             <ShaderBackground fragmentShader={thoughts} />
                             {/* <SceneCanvas>
-                                <Scene />
+                                <TestScene />
                             </SceneCanvas> */}
                         </FrostedPanel>
 
