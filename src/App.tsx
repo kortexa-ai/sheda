@@ -29,6 +29,8 @@ import singularity from './components/glsl/singularity.toy.glsl';
 import singularityShort from './components/glsl/singularity-short.toy.glsl';
 // import calibration from './components/glsl/calibration.toy.glsl';
 // import viewportCalibration from './components/glsl/viewport-calibration.toy.glsl';
+import codegolfTest1 from './components/glsl/codegolf-test1.toy.glsl';
+import codegolfTest2 from './components/glsl/codegolf-test2.toy.glsl';
 
 export default function App() {
     // const [OrbitControls, events] = useOrbitControls();
@@ -104,7 +106,7 @@ export default function App() {
                         >
                             {/* Sky shader with fixed coordinates */}
                             <SceneCanvas>
-                                <ShaderToy fs={singularity} />
+                                <ShaderToy fs={codegolfTest1} />
                             </SceneCanvas>
                         </FrostedPanel>
 
@@ -114,7 +116,7 @@ export default function App() {
                             tintOpacity={0.2}
                         >
                             {/* Blackhole shader with fixed coordinates */}
-                            <ShaderToyCanvas fs={singularityShort} />
+                            <ShaderToyCanvas fs={codegolfTest2} />
                         </FrostedPanel>
 
                     </View>

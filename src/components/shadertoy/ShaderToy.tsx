@@ -160,7 +160,7 @@ export function ShaderToy({
     let processedCode = shaderCode;
 
     processedCode = processedCode.replace(
-      /for\s*\(\s*float\s+(\w+)\s*;\s*([^;]+);([^)]+\))/g,
+      /for\s*\(\s*float\s+(\w+)\s*;\s*([^;]+);([^)]+)\)/g,
       (match, varName, condition, increment) => {
         if (!condition.includes('=')) {
           return `for(float ${varName}=0.;${condition};${increment})`;
