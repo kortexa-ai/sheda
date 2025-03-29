@@ -178,6 +178,11 @@ export function ShaderToy({
       }
     );
 
+    // Clamp all exp calls, multiple passes for nesting
+    processedCode = processedCode.replace(
+      /exp\s*\(\s*([^()]+|\([^()]*\))\s*\)/g,
+      (match, arg) => `exp(clamp(${arg}, -87.0, 87.0))`
+    );
     processedCode = processedCode.replace(
       /exp\s*\(\s*([^()]+|\([^()]*\))\s*\)/g,
       (match, arg) => `exp(clamp(${arg}, -87.0, 87.0))`
@@ -233,7 +238,7 @@ export function ShaderToy({
 
     return finalCode;
   };
-  
+
   const createUniforms = () => {
     const uniformsObj: Record<string, any> = {
       [UNIFORM_TIME]: { value: 0.0 },
