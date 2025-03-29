@@ -10,13 +10,18 @@ import './styles/App.css';
 import { Panel } from './components/Panel';
 import { FrostedPanel } from './components/FrostedPanel';
 import { ShaderBackground } from './components/ShaderBackground';
-// import { SceneCanvas } from './components/SceneCanvas';
+import { ShaderToyCanvas, ShaderToy } from './components/shadertoy';
+import { SceneCanvas } from './components/SceneCanvas';
 // import { TestScene } from './TestScene';
 
 // import starNest from './components/glsl/starnest.frag.glsl';
 // import fire from './components/glsl/fire.frag.glsl';
 import blackhole from './components/glsl/blackhole.frag.glsl';
 // import mountains from './components/glsl/mountains.frag.glsl';
+// import clock from './components/glsl/clock.frag.glsl';
+// import gradientwave from './components/glsl/gradientwave.frag.glsl';
+import sky from './components/glsl/sky.toy.glsl';
+import gradient from './components/glsl/gradient.toy.glsl';
 
 export default function App() {
     // const [OrbitControls, events] = useOrbitControls();
@@ -64,25 +69,14 @@ export default function App() {
                             }}
                             // {...events}
                         >
-                            {/* <FrostedPanel
+                            <FrostedPanel
                                 intensity={5}
                                 tintColor="red"
                                 tintOpacity={0.2}
                             >
-                                <SceneCanvas>
-                                    <TestScene />
-                                </SceneCanvas>
+                                {/* Using the new ShaderToyBackground component with ShaderToy code */}
+                                <ShaderToyCanvas fs={gradient} />
                             </FrostedPanel>
-                            <FrostedPanel
-                                intensity={5}
-                                tintColor="green"
-                                tintOpacity={0.2}
-                            > */}
-                                {/* <SceneCanvas>
-                                    <TestScene />
-                                    <OrbitControls />
-                                </SceneCanvas> */}
-                            {/* </FrostedPanel> */}
                         </Panel>
 
                         <FrostedPanel
@@ -90,10 +84,10 @@ export default function App() {
                             tintColor="yellow"
                             tintOpacity={0.2}
                         >
-                            <ShaderBackground fragmentShader={blackhole} />
-                            {/* <SceneCanvas>
-                                <TestScene />
-                            </SceneCanvas> */}
+                            {/* Example of using SceneCanvas + ShaderToy directly */}
+                            <SceneCanvas>
+                                <ShaderToy fs={sky} />
+                            </SceneCanvas>
                         </FrostedPanel>
 
                     </View>
