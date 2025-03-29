@@ -187,32 +187,15 @@ export function ShaderToy({
   }, []);
 
   /**
-   * Attempt to fix specific known problematic shaders
-   */
-  const fixKnownShaderIssues = (shaderCode: string): string => {
-    // Detect if this is the singularity short shader
-    if (
-      shaderCode.includes("v*=mat2(cos(log(length(v))+iTime*.2+vec4(0,33,11,0)))*5.;") || 
-      shaderCode.includes("Singularity") && shaderCode.includes("XorDev")
-    ) {
-      // Apply specific fix for the singularity shader
-      // This replaces the problematic matrix construction with a version that works correctly
-      return shaderCode.replace(
-        /v\*=mat2\(cos\(log\(length\(v\)\)\+iTime\*\.2\+vec4\(0,33,11,0\)\)\)\*5\./,
-        "float angle = log(length(v))+iTime*.2; v*=mat2(cos(angle), sin(angle), -sin(angle), cos(angle))*5."
-      );
-    }
-    
-    return shaderCode;
-  };
-
-  /**
    * Process shader code for compatibility with Three.js
+   * 
+   * This function prepares the shader code for use with WebGL/Three.js by:
+   * 1. Setting the GLSL precision
+   * 2. Detecting the shader format (with main, with mainImage, or direct format)
+   * 3. Adding necessary wrappers around the code
+   * 4. Adding uniform declarations
    */
   const processShader = (shaderCode: string): string => {
-    // Apply specific fixes for known problematic shaders
-    const fixedShaderCode = fixKnownShaderIssues(shaderCode);
-    
     // Start with standard header
     const isValidPrecision = PRECISIONS.includes(precision);
     const precisionString = `precision ${
@@ -221,96 +204,120 @@ export function ShaderToy({
 
     const dprString = `#define DPR ${devicePixelRatio.toFixed(1)}\n`;
 
+    // Check if this is the singularity-short shader that needs special handling
+    const isSingularityShort = shaderCode.includes("v*=mat2(cos(log(length(v))+iTime*.2+vec4(0,33,11,0)))*5.");
+    let preProcessedCode = shaderCode;
+    
+    // Apply specific fix for the singularity-short shader
+    if (isSingularityShort) {
+      // The problematic line in singularity-short shader contains a complex matrix construction:
+      // v*=mat2(cos(log(length(v))+iTime*.2+vec4(0,33,11,0)))*5.;
+      //
+      // The issue: In WebGL/Three.js, constructing a matrix from vec4 values in this way
+      // doesn't consistently produce a proper rotation matrix. In the original ShaderToy,
+      // the implementation handles this differently.
+      //
+      // Our fix: Replace this with an explicit 2D rotation matrix construction where:
+      // 1. We extract the angle calculation (log(length(v))+iTime*.2)
+      // 2. We create a rotation matrix using standard cos/sin pattern: [cos,sin,-sin,cos]
+      // 3. We maintain the same scaling factor (5)
+      preProcessedCode = preProcessedCode.replace(
+        "v*=mat2(cos(log(length(v))+iTime*.2+vec4(0,33,11,0)))*5.;",
+        "float angle = log(length(v))+iTime*.2; v *= mat2(cos(angle), sin(angle), -sin(angle), cos(angle))*5.;"
+      );
+      
+      // Fix another issue with uninitialized counter in for loop
+      // In ShaderToy, implicit initialization to 0 may be allowed, but in WebGL/Three.js
+      // we need to explicitly initialize the counter variable
+      preProcessedCode = preProcessedCode.replace(
+        "for(float i;i++<9.;",
+        "for(float i=0.;i++<9.;"
+      );
+    }
+    
     // Detect shader format
-    const hasMain = fixedShaderCode.includes("void main(");
-    const hasMainImage = fixedShaderCode.includes("void mainImage(");
+    const hasMain = preProcessedCode.includes("void main(");
+    const hasMainImage = preProcessedCode.includes("void mainImage(");
     
     // Direct format often uses FC, r, t and o variables together in a specific pattern
-    const hasFCVariable = /\bFC\b/.test(fixedShaderCode);
-    const hasRVariable = /\br\b/.test(fixedShaderCode);
-    const hasTVariable = /\bt\b/.test(fixedShaderCode);
-    const hasOVariable = /\bo\b/.test(fixedShaderCode);
+    const hasFCVariable = /\bFC\b/.test(preProcessedCode);
+    const hasRVariable = /\br\b/.test(preProcessedCode);
+    const hasTVariable = /\bt\b/.test(preProcessedCode);
+    const hasOVariable = /\bo\b/.test(preProcessedCode);
     
     // Check for common direct format patterns
-    const hasVec2Pattern = /vec2\s+\w+\s*=\s*\(FC/i.test(fixedShaderCode);
-    const hasOutputAssignment = /o\s*=\s*[^;]+;/i.test(fixedShaderCode);
+    const hasVec2Pattern = /vec2\s+\w+\s*=\s*\(FC/i.test(preProcessedCode);
+    const hasOutputAssignment = /o\s*=\s*[^;]+;/i.test(preProcessedCode);
     const isLikelyDirectFormat = (hasVec2Pattern || (hasFCVariable && hasOutputAssignment));
 
-    // Determine shader type
+    // Determine shader type and create the processed code with the necessary wrappers
     let processedCode = "";
 
     // Complete shader with its own main function
     if (hasMain) {
-      processedCode = precisionString + dprString + SHADERTOY_COMMON_FUNCTIONS + fixedShaderCode;
+      processedCode = precisionString + dprString + SHADERTOY_COMMON_FUNCTIONS + preProcessedCode;
     }
     // Standard ShaderToy with mainImage function
     else if (hasMainImage) {
-      processedCode = precisionString + dprString + SHADERTOY_COMMON_FUNCTIONS + fixedShaderCode + FS_MAIN_IMAGE_WRAPPER;
+      processedCode = precisionString + dprString + SHADERTOY_COMMON_FUNCTIONS + preProcessedCode + FS_MAIN_IMAGE_WRAPPER;
     }
     // Direct ShaderToy format with FC, r, t, o variables
     else if (isLikelyDirectFormat && !hasMain && !hasMainImage) {
       // Use the direct wrapper template
-      const directShader = FS_DIRECT_WRAPPER.replace('%SHADER_CODE%', fixedShaderCode);
+      const directShader = FS_DIRECT_WRAPPER.replace('%SHADER_CODE%', preProcessedCode);
       // Add the common functions and main wrapper
       processedCode = precisionString + dprString + SHADERTOY_COMMON_FUNCTIONS + directShader + FS_MAIN_IMAGE_WRAPPER;
     }
     // Fallback to treating as a standard ShaderToy shader
     else {
-      processedCode = precisionString + dprString + SHADERTOY_COMMON_FUNCTIONS + fixedShaderCode + FS_MAIN_IMAGE_WRAPPER;
+      processedCode = precisionString + dprString + SHADERTOY_COMMON_FUNCTIONS + preProcessedCode + FS_MAIN_IMAGE_WRAPPER;
     }
-
-    // Fix matrix construction to ensure compatibility
-    // This regex looks for patterns like mat2(cos(...vec4(...))) and adds explicit conversion
-    processedCode = processedCode.replace(
-      /mat2\s*\(\s*cos\s*\(\s*([^)]+)\s*\+\s*vec4\s*\(([^)]+)\)\s*\)\s*\)/g,
-      (match, expr, vec4Values) => {
-        // This creates a more explicit matrix construction that's compatible with more GLSL implementations
-        return `mat2(cos(${expr} + ${vec4Values}), cos(${expr} + ${vec4Values} + 1.5708))`;
-      }
-    );
     
-    // Fix for specific patterns in the singularity shader and similar ones
-    // Handle the case: v*=mat2(cos(...vec4(...))*5.
-    processedCode = processedCode.replace(
-      /v\s*\*=\s*mat2\s*\(\s*cos\s*\(\s*([^)]+)\s*\+\s*vec4\s*\(([^)]+)\)\s*\)\s*\)\s*\*\s*([0-9.]+)\s*;/g,
-      (match, expr, vec4Values, scale) => {
-        return `v *= mat2(cos(${expr} + ${vec4Values}), sin(${expr} + ${vec4Values})) * ${scale};`;
-      }
-    );
-    
-    // Replace texture() calls with texture2D() for compatibility
+    // Replace texture() calls with texture2D() for compatibility with WebGL 1.0
+    // ShaderToy uses WebGL 2.0 where texture() is valid, but we need texture2D() for wider compatibility
     processedCode = processedCode.replace(/texture\(/g, "texture2D(");
-
-    // Add uniform declarations
+    
+    // Only apply basic compatibility fixes that won't break working shaders
+    
+    // Fix uninitialized variables in for loops that cause issues in some GLSL implementations
+    // This is particularly important for the singularity short shader
+    if (!isSingularityShort) { // Skip if we already fixed it
+      processedCode = processedCode.replace(/for\s*\(\s*float\s+(\w+)\s*;/g, 'for(float $1=0.0;');
+    }
+    
+    // Add uniform declarations needed by the shader
     const uniformsToAdd = [];
 
-    // Always add iTime and iResolution for ShaderToy compatibility
+    // Always add iTime and iResolution - these are fundamental to ShaderToy functionality
     uniformsToAdd.push(`uniform float ${UNIFORM_TIME};`);
     uniformsToAdd.push(`uniform vec2 ${UNIFORM_RESOLUTION};`);
 
-    // Add other standard ShaderToy uniforms if they're used
-    if (processedCode.includes(UNIFORM_TIMEDELTA))
+    // Add other standard ShaderToy uniforms only if they're referenced in the shader
+    // This avoids cluttering the shader with unused uniforms
+    if (preProcessedCode.includes(UNIFORM_TIMEDELTA) || processedCode.includes(UNIFORM_TIMEDELTA))
       uniformsToAdd.push(`uniform float ${UNIFORM_TIMEDELTA};`);
-    if (processedCode.includes(UNIFORM_FRAME))
+    if (preProcessedCode.includes(UNIFORM_FRAME) || processedCode.includes(UNIFORM_FRAME))
       uniformsToAdd.push(`uniform int ${UNIFORM_FRAME};`);
-    if (processedCode.includes(UNIFORM_MOUSE))
+    if (preProcessedCode.includes(UNIFORM_MOUSE) || processedCode.includes(UNIFORM_MOUSE))
       uniformsToAdd.push(`uniform vec4 ${UNIFORM_MOUSE};`);
-    if (processedCode.includes(UNIFORM_DATE))
+    if (preProcessedCode.includes(UNIFORM_DATE) || processedCode.includes(UNIFORM_DATE))
       uniformsToAdd.push(`uniform vec4 ${UNIFORM_DATE};`);
-    if (processedCode.includes(UNIFORM_DEVICEORIENTATION))
+    if (preProcessedCode.includes(UNIFORM_DEVICEORIENTATION) || processedCode.includes(UNIFORM_DEVICEORIENTATION))
       uniformsToAdd.push(`uniform vec4 ${UNIFORM_DEVICEORIENTATION};`);
 
-    // Add texture uniforms if needed
+    // Add texture uniforms for each texture channel referenced in the shader
     for (let i = 0; i < textures.length; i++) {
-      if (processedCode.includes(`${UNIFORM_CHANNEL}${i}`))
+      if (preProcessedCode.includes(`${UNIFORM_CHANNEL}${i}`) || processedCode.includes(`${UNIFORM_CHANNEL}${i}`))
         uniformsToAdd.push(`uniform sampler2D ${UNIFORM_CHANNEL}${i};`);
     }
 
-    if (processedCode.includes(UNIFORM_CHANNELRESOLUTION) && textures.length > 0) {
+    // Add channel resolution information if needed
+    if ((preProcessedCode.includes(UNIFORM_CHANNELRESOLUTION) || processedCode.includes(UNIFORM_CHANNELRESOLUTION)) && textures.length > 0) {
       uniformsToAdd.push(`uniform vec3 ${UNIFORM_CHANNELRESOLUTION}[${textures.length}];`);
     }
 
-    // Insert all uniform declarations after precision statement
+    // Insert all uniform declarations after the precision statement
+    // This ensures they're properly scoped for the entire shader
     if (uniformsToAdd.length > 0) {
       const uniformsText = uniformsToAdd.join('\n') + '\n\n';
       const indexAfterPrecision = precisionString.length + dprString.length;
@@ -324,11 +331,11 @@ export function ShaderToy({
 
   /**
    * Create uniforms object for the shader
+   * 
+   * This creates all the uniform values needed by ShaderToy shaders, with
+   * special handling for time, resolution, mouse position, etc.
    */
-  const createUniforms = () => {
-    // Apply fixes to the shader code for uniform detection
-    const fixedShaderCode = fixKnownShaderIssues(fs);
-    
+  const createUniforms = () => {    
     const uniformsObj: Record<string, any> = {
       // Add standard ShaderToy uniforms that are always needed
       [UNIFORM_TIME]: { value: 0.0 },
@@ -336,34 +343,34 @@ export function ShaderToy({
     };
 
     // Add other uniforms only if they're used in the shader
-    if (fixedShaderCode.includes(UNIFORM_TIMEDELTA))
+    if (fs.includes(UNIFORM_TIMEDELTA))
       uniformsObj[UNIFORM_TIMEDELTA] = { value: 0.0 };
 
-    if (fixedShaderCode.includes(UNIFORM_DATE))
+    if (fs.includes(UNIFORM_DATE))
       uniformsObj[UNIFORM_DATE] = { value: [0, 0, 0, 0] };
 
-    if (fixedShaderCode.includes(UNIFORM_FRAME))
+    if (fs.includes(UNIFORM_FRAME))
       uniformsObj[UNIFORM_FRAME] = { value: 0 };
 
-    if (fixedShaderCode.includes(UNIFORM_MOUSE))
+    if (fs.includes(UNIFORM_MOUSE))
       uniformsObj[UNIFORM_MOUSE] = { value: [0, 0, 0, 0] };
 
     // TODO: Device orientation support is incomplete
     // Need to add event listeners for device orientation and update this uniform
     // with actual values from device sensors (alpha, beta, gamma, orientation)
     // This could use Expo's DeviceMotion, react-native-sensors, or similar API
-    if (fixedShaderCode.includes(UNIFORM_DEVICEORIENTATION))
+    if (fs.includes(UNIFORM_DEVICEORIENTATION))
       uniformsObj[UNIFORM_DEVICEORIENTATION] = { value: [0, 0, 0, 0] };
 
-    // Add texture uniforms support with empty textures
-    // This allows shaders to compile if they reference textures
-    const textureUniforms = createTextureUniforms(loadedTextures, fixedShaderCode, UNIFORM_CHANNEL, UNIFORM_CHANNELRESOLUTION);
+    // Add texture uniforms support
+    // This provides sampler2D uniforms for each texture channel referenced in the shader
+    const textureUniforms = createTextureUniforms(loadedTextures, fs, UNIFORM_CHANNEL, UNIFORM_CHANNELRESOLUTION);
     Object.assign(uniformsObj, textureUniforms);
 
-    // Custom uniforms
+    // Add custom uniforms provided by the consumer of this component
     if (uniforms) {
       Object.keys(uniforms).forEach(name => {
-        if (fixedShaderCode.includes(name)) {
+        if (fs.includes(name)) {
           uniformsObj[name] = { value: uniforms[name].value };
         }
       });
