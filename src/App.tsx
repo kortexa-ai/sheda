@@ -15,7 +15,8 @@ import { ShaderBackground } from './components/ShaderBackground';
 
 // import starNest from './components/glsl/starnest.frag.glsl';
 // import fire from './components/glsl/fire.frag.glsl';
-import thoughts from './components/glsl/thoughts.frag.glsl';
+import blackhole from './components/glsl/blackhole.frag.glsl';
+// import mountains from './components/glsl/mountains.frag.glsl';
 
 export default function App() {
     // const [OrbitControls, events] = useOrbitControls();
@@ -38,7 +39,7 @@ export default function App() {
                 height: '100%',
                 backgroundColor: 'black',
             }}>
-                <ShaderBackground fragmentShader={thoughts} />
+                <ShaderBackground fragmentShader={blackhole} />
 
                 <SafeAreaView
                     style={{
@@ -89,7 +90,7 @@ export default function App() {
                             tintColor="yellow"
                             tintOpacity={0.2}
                         >
-                            <ShaderBackground fragmentShader={thoughts} />
+                            <ShaderBackground fragmentShader={blackhole} />
                             {/* <SceneCanvas>
                                 <TestScene />
                             </SceneCanvas> */}

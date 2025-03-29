@@ -49,7 +49,7 @@
     "expo-gl": "^16.0.0-canary-20250320-7a205d3",
     "expo-linking": "7.1.0-canary-20250320-7a205d3",
     "expo-status-bar": "^2.0.2-canary-20250320-7a205d3",
-    "lucide-react": "^0.484.0",
+    "lucide-react": "^0.485.0",
     "r3f-native-orbitcontrols": "^1.0.12",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -60,7 +60,7 @@
     "react-native-web": "^0.19.13",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.174.0"
+    "three": "^0.175.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -75,7 +75,7 @@
     "@types/node": "^22.13.13",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.4",
-    "@types/three": "^0.174.0",
+    "@types/three": "^0.175.0",
     "babel-plugin-transform-import-meta": "^2.3.2",
     "babel-preset-expo": "^12.0.9",
     "eslint": "^9.22.0",
@@ -94,5 +94,6 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
