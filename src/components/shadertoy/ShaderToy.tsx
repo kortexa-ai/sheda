@@ -17,12 +17,13 @@
  */
 
 import React, { useRef, useState, useEffect } from 'react';
-import { ShaderMaterial, Color } from 'three';
+import { ShaderMaterial, Color, Texture } from 'three';
 import { extend, useFrame, useThree } from '@react-three/fiber/native';
 import { OrthographicCamera } from '@react-three/drei/native';
 
-// Import texture types but not the implementation
+// Import texture definitions and utilities
 import type { TextureProps } from './textures';
+import { createTextureUniforms } from './textures';
 
 // Register ShaderMaterial with React Three Fiber
 extend({ ShaderMaterial });
@@ -129,9 +130,9 @@ export function ShaderToy({
   // In the original ShaderToy, iMouse.xy contains current position and iMouse.zw contains click position
   const [mousePosition, setMousePosition] = useState([0, 0, 0, 0]);
   
-  // TODO: For texture support, we would need to add state for loaded textures here:
-  // const [loadedTextures, setLoadedTextures] = useState<(Texture | null)[]>([]);
-  // But texture loading is currently disabled due to React Native compatibility issues
+  // We add an empty loadedTextures array to support texture uniforms without loading actual textures
+  // This allows shaders to compile properly even if they reference textures that aren't loaded
+  const loadedTextures: (Texture | null)[] = [];
   
   /**
    * Process shader code for compatibility with Three.js
@@ -229,13 +230,10 @@ export function ShaderToy({
     if (fs.includes(UNIFORM_DEVICEORIENTATION))
       uniformsObj[UNIFORM_DEVICEORIENTATION] = { value: [0, 0, 0, 0] };
     
-    // TODO: For texture support, we would need to add texture uniforms here using:
-    // import { createTextureUniforms } from './textures';
-    // 
-    // const textureUniforms = createTextureUniforms(loadedTextures, fs, UNIFORM_CHANNEL, UNIFORM_CHANNELRESOLUTION);
-    // Object.assign(uniformsObj, textureUniforms);
-    //
-    // But texture loading is currently disabled due to React Native compatibility issues
+    // Add texture uniforms support with empty textures
+    // This allows shaders to compile if they reference textures
+    const textureUniforms = createTextureUniforms(loadedTextures, fs, UNIFORM_CHANNEL, UNIFORM_CHANNELRESOLUTION);
+    Object.assign(uniformsObj, textureUniforms);
     
     // Custom uniforms
     if (uniforms) {
