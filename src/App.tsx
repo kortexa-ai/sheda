@@ -17,11 +17,13 @@ import { SceneCanvas } from './components/SceneCanvas';
 // import starNest from './components/glsl/starnest.frag.glsl';
 // import fire from './components/glsl/fire.frag.glsl';
 import blackhole from './components/glsl/blackhole.frag.glsl';
+import blackholetoy from './components/glsl/blackhole.toy.glsl';
 // import mountains from './components/glsl/mountains.frag.glsl';
 // import clock from './components/glsl/clock.frag.glsl';
 // import gradientwave from './components/glsl/gradientwave.frag.glsl';
-import sky from './components/glsl/sky.toy.glsl';
+// import sky from './components/glsl/sky.toy.glsl';
 import gradient from './components/glsl/gradient.toy.glsl';
+import textureTest from './components/glsl/texture-test.frag.glsl';
 
 export default function App() {
     // const [OrbitControls, events] = useOrbitControls();
@@ -84,9 +86,20 @@ export default function App() {
                             tintColor="yellow"
                             tintOpacity={0.2}
                         >
+                            {/* Example of texture shader test */}
+                            <SceneCanvas>
+                                <ShaderToy fs={textureTest} />
+                            </SceneCanvas>
+                        </FrostedPanel>
+
+                        <FrostedPanel
+                            intensity={5}
+                            tintColor="blue"
+                            tintOpacity={0.2}
+                        >
                             {/* Example of using SceneCanvas + ShaderToy directly */}
                             <SceneCanvas>
-                                <ShaderToy fs={sky} />
+                                <ShaderToy fs={blackholetoy} />
                             </SceneCanvas>
                         </FrostedPanel>
 

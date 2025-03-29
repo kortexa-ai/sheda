@@ -130,9 +130,29 @@ export function ShaderToy({
   // In the original ShaderToy, iMouse.xy contains current position and iMouse.zw contains click position
   const [mousePosition, setMousePosition] = useState([0, 0, 0, 0]);
   
-  // We add an empty loadedTextures array to support texture uniforms without loading actual textures
-  // This allows shaders to compile properly even if they reference textures that aren't loaded
-  const loadedTextures: (Texture | null)[] = [];
+  // Create a test texture for shaders that need texture uniforms
+  // This creates a checker pattern texture that can be used as iChannel0
+  const [loadedTextures, setLoadedTextures] = useState<(Texture | null)[]>([]);
+  
+  // Initialize the test texture on component mount
+  useEffect(() => {
+    import('./textures').then(({ createCheckerTexture }) => {
+      const checkerTexture = createCheckerTexture(
+        256,       // size
+        8,         // gridSize
+        [255, 0, 0, 255],  // red
+        [0, 255, 255, 255] // cyan
+      );
+      setLoadedTextures([checkerTexture]);
+    });
+    
+    // Clean up texture on unmount
+    return () => {
+      loadedTextures.forEach(texture => {
+        if (texture) texture.dispose();
+      });
+    };
+  }, []);
   
   /**
    * Process shader code for compatibility with Three.js

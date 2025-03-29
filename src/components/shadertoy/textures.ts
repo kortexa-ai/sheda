@@ -5,7 +5,52 @@
  * due to React Native compatibility issues. It's kept here for future implementation.
  */
 
-import { Texture, TextureLoader } from 'three';
+import { Texture, TextureLoader, DataTexture, RGBAFormat, UnsignedByteType } from 'three';
+
+/**
+ * Create a simple checkered grid texture for testing
+ * @param size Size of the texture (width and height)
+ * @param gridSize Number of cells in the grid
+ * @param color1 First color as [r, g, b, a] (values 0-255)
+ * @param color2 Second color as [r, g, b, a] (values 0-255)
+ * @returns A new DataTexture
+ */
+export function createCheckerTexture(
+  size: number = 256,
+  gridSize: number = 8,
+  color1: number[] = [255, 255, 255, 255],
+  color2: number[] = [0, 0, 0, 255]
+): Texture {
+  // Create data buffer
+  const data = new Uint8Array(size * size * 4);
+  const cellSize = size / gridSize;
+  
+  // Fill the texture with checkered pattern
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const index = (y * size + x) * 4;
+      
+      // Determine which color to use based on position
+      const cellX = Math.floor(x / cellSize);
+      const cellY = Math.floor(y / cellSize);
+      const isColor1 = (cellX + cellY) % 2 === 0;
+      
+      const color = isColor1 ? color1 : color2;
+      
+      // Set RGBA values
+      data[index] = color[0];     // R
+      data[index + 1] = color[1]; // G
+      data[index + 2] = color[2]; // B
+      data[index + 3] = color[3]; // A
+    }
+  }
+  
+  // Create texture
+  const texture = new DataTexture(data, size, size, RGBAFormat, UnsignedByteType);
+  texture.needsUpdate = true;
+  
+  return texture;
+}
 
 // Interface for texture properties
 export interface TextureProps {
