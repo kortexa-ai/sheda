@@ -1,4 +1,3 @@
-// Source: https://www.shadertoy.com/view/3csSWB
 /*
     "Singularity" by @XorDev
 
@@ -9,6 +8,8 @@
     dean_the_coder: -12
     iq: -4
 */
+
+//Original [432]
 void mainImage(out vec4 O,in vec2 F)
 {
     vec2 p=(F*2.-iResolution.xy)/(iResolution.y*.7),
