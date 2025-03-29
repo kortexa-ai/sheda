@@ -1,11 +1,3 @@
-// Classic ShaderToy example - this will automatically be processed to work in Three.js
-void mainImage(out vec4 fragColor, in vec2 fragCoord) {
-    // Normalized pixel coordinates (from 0 to 1)
-    vec2 uv = fragCoord / iResolution.xy;
-
-    // Time varying pixel color
-    vec3 col = 0.5 + 0.5 * cos(iTime + uv.xyx + vec3(0, 2, 4));
-
-    // Output to screen
-    fragColor = vec4(col, 1.0);
-}
+vec2 uv=FC/iResolution.xy;
+vec3 col=0.5+0.5*cos(iTime+uv.xyx+vec3(0,2,4));
+o=vec4(col,1.0);
