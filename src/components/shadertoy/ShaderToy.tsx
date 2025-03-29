@@ -169,12 +169,25 @@ export function ShaderToy({
       }
     );
 
+    // Fix uninitialized loop variables without float declaration
     processedCode = processedCode.replace(
-      /mat2\s*\(\s*cos\s*\(\s*([^)]+)\s*\+\s*vec4\s*\(([^)]+)\)\s*\)\s*\)\s*([\*\s*[0-9.]+)?\s*;?/g,
+      /for\s*\(\s*;\s*([^;]+);([^)]+)\)/g,
+      (match, condition, increment) => {
+        const varNameMatch = condition.match(/(\w+)\s*(\+\+|\-\-|<|>|<=|>=|==|!=)/);
+        if (varNameMatch && !condition.includes('=')) {
+          const varName = varNameMatch[1];
+          return `for(float ${varName}=0.;${condition};${increment})`;
+        }
+        return match;
+      }
+    );
+
+    processedCode = processedCode.replace(
+      /mat2\s*\(\s*cos\s*\(\s*([^)]+)\+vec4\s*\(([^)]+)\)\s*\)\s*\)\s*(\*?\s*[0-9.]+)?/g,
       (match, expr, vec4Args, scale) => {
-        const angleExpr = expr.trim();
+        const angleExpr = `${expr}+vec4(${vec4Args})`;
         const scaleFactor = scale ? scale.trim() : '';
-        return `mat2(cos(${angleExpr}), sin(${angleExpr}), -sin(${angleExpr}), cos(${angleExpr}))${scaleFactor}`;
+        return `mat2(cos(${angleExpr})${scaleFactor})`; // Keep ShaderToy's vec4 matrix construction
       }
     );
 
