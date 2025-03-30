@@ -154,7 +154,6 @@ export function ShaderToy({
     initializer: string
   ): string => {
     return body.replace(
-      // new RegExp(`(${type}\\s+([a-zA-Z_]\\w*(?:\\s*,\\s*[a-zA-Z_]\\w*(?:\\s*=\\s*(?:[^,;\\n]|\\([^()]*\\))*?)?)*)\\s*;)`, 'g'),
       new RegExp(`(${type}\\s+([a-zA-Z_]\\w*(?:\\s*,\\s*[a-zA-Z_]\\w*(?:\\s*=\\s*[^;]+?)?)*)\\s*;)`, 'g'),
       (decl: string, fullDecl: string, varList: string): string => {
         console.log(`Found uninitialized ${type} variables`);

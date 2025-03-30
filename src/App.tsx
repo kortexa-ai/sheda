@@ -34,6 +34,8 @@ import skyToy from './components/glsl/sky.toy.glsl';
 import mountainsToy from './components/glsl/mountains.toy.glsl';
 import singularityToy from './components/glsl/singularity.toy.glsl';
 import mimasToy from './components/glsl/mimas.toy.glsl';
+import seascapeToy from './components/glsl/seascape.toy.glsl';
+import cloudsToy from './components/glsl/clouds.toy.glsl';
 
 export default function App() {
     // const [OrbitControls, events] = useOrbitControls();
@@ -99,7 +101,6 @@ export default function App() {
                             tintColor="yellow"
                             tintOpacity={0.2}
                         >
-                            {/* Example of texture shader test */}
                             <SceneCanvas>
                                 <ShaderToy fs={mountainsToy} />
                             </SceneCanvas>
@@ -110,9 +111,8 @@ export default function App() {
                             tintColor="blue"
                             tintOpacity={0.2}
                         >
-                            {/* Sky shader with fixed coordinates */}
                             <SceneCanvas>
-                                <ShaderToy fs={blackholeToy} />
+                                <ShaderToy fs={singularityToy} />
                             </SceneCanvas>
                         </FrostedPanel>
 
@@ -121,8 +121,7 @@ export default function App() {
                             tintColor="green"
                             tintOpacity={0.2}
                         >
-                            {/* Blackhole shader with fixed coordinates */}
-                            <ShaderToyCanvas fs={mimasToy} />
+                            <ShaderBackground fragmentShader={blackhole} />
                         </FrostedPanel>
 
                     </View>
