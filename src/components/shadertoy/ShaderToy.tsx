@@ -143,6 +143,46 @@ export function ShaderToy({
     };
   }, []);
 
+  // Helper function to initialize uninitialized variables of a given type
+  const initializeVariables = (
+    body: string,
+    type: string,
+    initializer: string
+  ): string => {
+    return body.replace(
+      new RegExp(`(${type}\\s+([a-zA-Z_]\\w*(?:\\s*,\\s*[a-zA-Z_]\\w*(?:\\s*=\\s*(?:[^,;\\n]|\\([^()]*\\))*?)?)*)\\s*;)`, 'g'),
+      (decl: string, fullDecl: string, varList: string): string => {
+        console.log(`Found uninitialized ${type} variables`);
+        const vars: string[] = [];
+        let currentVar: string = '';
+        let parenDepth: number = 0;
+        let inInitializer: boolean = false;
+
+        for (let i = 0; i < varList.length; i++) {
+          const char = varList[i];
+          if (char === '(') parenDepth++;
+          if (char === ')') parenDepth--;
+          if (char === '=' && parenDepth === 0) inInitializer = true;
+
+          if (char === ',' && parenDepth === 0 && !inInitializer) {
+            const trimmed = currentVar.trim();
+            vars.push(trimmed.includes('=') ? trimmed : `${trimmed}=${initializer}`);
+            currentVar = '';
+            inInitializer = false;
+          } else {
+            currentVar += char;
+          }
+        }
+        if (currentVar) {
+          const trimmed = currentVar.trim();
+          vars.push(trimmed.includes('=') ? trimmed : `${trimmed}=${initializer}`);
+        }
+
+        return `${type} ${vars.join(', ')};`;
+      }
+    );
+  };
+
   /**
    * Process shader code for compatibility with Three.js
    *
@@ -235,58 +275,19 @@ export function ShaderToy({
       );
     }
 
-    // Initialize uninitialized float and vec3 variables inside mainImage
+    // Initialize uninitialized float, vec2, vec3, and vec4 variables inside mainImage
     processedCode = processedCode.replace(
       /(void mainImage\s*\(\s*out vec4 fragColor[^)]*\)\s*{)([\s\S]*?)}/,
       (match: string, signature: string, body: string): string => {
+        let updatedBody: string = body;
         // Process float declarations
-        let updatedBody: string = body.replace(
-          /(float\s+([a-zA-Z_]\w*(?:\s*,\s*[a-zA-Z_]\w*)*)\s*;)/g,
-          (decl: string, fullDecl: string, varList: string): string => {
-            console.log("Found uninitialized float variables");
-            const vars: string[] = varList.split(',').map((v: string) => {
-              const trimmed = v.trim();
-              return trimmed.includes('=') ? trimmed : `${trimmed}=0.`;
-            });
-            return `float ${vars.join(', ')};`;
-          }
-        );
+        updatedBody = initializeVariables(updatedBody, 'float', '0.');
+        // Process vec2 declarations
+        updatedBody = initializeVariables(updatedBody, 'vec2', 'vec2(0.)');
         // Process vec3 declarations
-        updatedBody = updatedBody.replace(
-          /(vec3\s+([a-zA-Z_]\w*(?:\s*,\s*[a-zA-Z_]\w*(?:\s*=\s*(?:[^,;\n]|\([^()]*\))*?)?)*)\s*;)/g,
-          (decl: string, fullDecl: string, varList: string): string => {
-            console.log("Found uninitialized vec3 variables");
-            const vars: string[] = [];
-            let currentVar: string = '';
-            let parenDepth: number = 0;
-            let inInitializer: boolean = false;
-
-            // Parse varList character by character to handle commas in initializers
-            for (let i = 0; i < varList.length; i++) {
-              const char = varList[i];
-              if (char === '(') parenDepth++;
-              if (char === ')') parenDepth--;
-              if (char === '=' && parenDepth === 0) inInitializer = true;
-
-              if (char === ',' && parenDepth === 0 && !inInitializer) {
-                // End of a variable declaration
-                const trimmed = currentVar.trim();
-                vars.push(trimmed.includes('=') ? trimmed : `${trimmed}=vec3(0.)`);
-                currentVar = '';
-                inInitializer = false;
-              } else {
-                currentVar += char;
-              }
-            }
-            // Handle the last variable
-            if (currentVar) {
-              const trimmed = currentVar.trim();
-              vars.push(trimmed.includes('=') ? trimmed : `${trimmed}=vec3(0.)`);
-            }
-
-            return `vec3 ${vars.join(', ')};`;
-          }
-        );
+        updatedBody = initializeVariables(updatedBody, 'vec3', 'vec3(0.)');
+        // Process vec4 declarations
+        updatedBody = initializeVariables(updatedBody, 'vec4', 'vec4(0.)');
         return `${signature}${updatedBody}}`;
       }
     );
