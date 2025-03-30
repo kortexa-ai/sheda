@@ -157,7 +157,18 @@ export function ShaderToy({
     const precisionString = `precision ${isValidPrecision ? precision : "highp"} float;\n`;
     const dprString = `#define DPR ${devicePixelRatio.toFixed(1)}\n`;
 
-    let processedCode = shaderCode;
+
+    // Check if shader is in direct format
+    const hasMain = shaderCode.includes("void main(");
+    const hasMainImage = shaderCode.includes("void mainImage(");
+    const isLikelyDirectFormat = !hasMain && !hasMainImage;
+
+    let wrappedCode = shaderCode;
+    if (isLikelyDirectFormat) {
+      wrappedCode = FS_DIRECT_WRAPPER.replace('%SHADER_CODE%', shaderCode);
+    }
+
+    let processedCode = wrappedCode;
 
     // Fix uninitialized loop variables with float declaration
     processedCode = processedCode.replace(
@@ -224,24 +235,67 @@ export function ShaderToy({
       );
     }
 
-    const hasMain = processedCode.includes("void main(");
-    const hasMainImage = processedCode.includes("void mainImage(");
-    const hasFCVariable = /\bFC\b/.test(processedCode);
-    const hasRVariable = /\br\b/.test(processedCode);
-    const hasTVariable = /\bt\b/.test(processedCode);
-    const hasOVariable = /\bo\b/.test(processedCode);
-    const hasVec2Pattern = /vec2\s+\w+\s*=\s*\(FC/i.test(processedCode);
-    const hasOutputAssignment = /o\s*=\s*[^;]+;/i.test(processedCode);
-    const isLikelyDirectFormat = !hasMain && !hasMainImage;
+    // Initialize uninitialized float and vec3 variables inside mainImage
+    processedCode = processedCode.replace(
+      /(void mainImage\s*\(\s*out vec4 fragColor[^)]*\)\s*{)([\s\S]*?)}/,
+      (match: string, signature: string, body: string): string => {
+        // Process float declarations
+        let updatedBody: string = body.replace(
+          /(float\s+([a-zA-Z_]\w*(?:\s*,\s*[a-zA-Z_]\w*)*)\s*;)/g,
+          (decl: string, fullDecl: string, varList: string): string => {
+            console.log("Found uninitialized float variables");
+            const vars: string[] = varList.split(',').map((v: string) => {
+              const trimmed = v.trim();
+              return trimmed.includes('=') ? trimmed : `${trimmed}=0.`;
+            });
+            return `float ${vars.join(', ')};`;
+          }
+        );
+        // Process vec3 declarations
+        updatedBody = updatedBody.replace(
+          /(vec3\s+([a-zA-Z_]\w*(?:\s*,\s*[a-zA-Z_]\w*(?:\s*=\s*(?:[^,;\n]|\([^()]*\))*?)?)*)\s*;)/g,
+          (decl: string, fullDecl: string, varList: string): string => {
+            console.log("Found uninitialized vec3 variables");
+            const vars: string[] = [];
+            let currentVar: string = '';
+            let parenDepth: number = 0;
+            let inInitializer: boolean = false;
+
+            // Parse varList character by character to handle commas in initializers
+            for (let i = 0; i < varList.length; i++) {
+              const char = varList[i];
+              if (char === '(') parenDepth++;
+              if (char === ')') parenDepth--;
+              if (char === '=' && parenDepth === 0) inInitializer = true;
+
+              if (char === ',' && parenDepth === 0 && !inInitializer) {
+                // End of a variable declaration
+                const trimmed = currentVar.trim();
+                vars.push(trimmed.includes('=') ? trimmed : `${trimmed}=vec3(0.)`);
+                currentVar = '';
+                inInitializer = false;
+              } else {
+                currentVar += char;
+              }
+            }
+            // Handle the last variable
+            if (currentVar) {
+              const trimmed = currentVar.trim();
+              vars.push(trimmed.includes('=') ? trimmed : `${trimmed}=vec3(0.)`);
+            }
+
+            return `vec3 ${vars.join(', ')};`;
+          }
+        );
+        return `${signature}${updatedBody}}`;
+      }
+    );
 
     let finalCode = "";
     if (hasMain) {
       finalCode = precisionString + dprString + SHADERTOY_COMMON_FUNCTIONS + processedCode;
     } else if (hasMainImage) {
       finalCode = precisionString + dprString + SHADERTOY_COMMON_FUNCTIONS + processedCode + FS_MAIN_IMAGE_WRAPPER;
-    } else if (isLikelyDirectFormat) {
-      const directShader = FS_DIRECT_WRAPPER.replace('%SHADER_CODE%', processedCode);
-      finalCode = precisionString + dprString + SHADERTOY_COMMON_FUNCTIONS + directShader + FS_MAIN_IMAGE_WRAPPER;
     } else {
       finalCode = precisionString + dprString + SHADERTOY_COMMON_FUNCTIONS + processedCode + FS_MAIN_IMAGE_WRAPPER;
     }
