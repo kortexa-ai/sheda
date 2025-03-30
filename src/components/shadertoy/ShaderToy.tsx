@@ -56,9 +56,9 @@ vec3 hsv(float h, float s, float v) {
 
 const FS_MAIN_IMAGE_WRAPPER = `
 void main(void) {
-    vec4 color = vec4(0.0, 0.0, 0.0, 1.0);
-    mainImage(color, gl_FragCoord.xy);
-    gl_FragColor = color;
+    vec4 fragColor = vec4(0.0, 0.0, 0.0, 1.0);
+    mainImage(fragColor, gl_FragCoord.xy);
+    gl_FragColor = fragColor;
 }
 `;
 
@@ -82,10 +82,10 @@ void main() {
 `;
 
 const BASIC_FS = `
-void mainImage(out vec4 o, in vec2 FC) {
-    vec2 uv = FC/iResolution.xy;
+void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+    vec2 uv = fragCoord/iResolution.xy;
     vec3 col = vec3(1,1,1);
-    o = vec4(col,1.0);
+    fragColor = vec4(col,1.0);
 }
 `;
 
@@ -203,10 +203,10 @@ export function ShaderToy({
       (match, arg) => `exp(clamp(${arg}, -87.0, 87.0))`
     );
 
-    // Initialize out vec4 o if not assigned before use
+    // Initialize out vec4 fragColor if not assigned before use
     let injections = [];
-    if (processedCode.includes("out vec4 o") && !processedCode.match(/\bo\s*=/)) {
-      injections.push("o = vec4(0.);");
+    if (processedCode.includes("out vec4 fragColor") && !processedCode.match(/\bfragColor\s*=/)) {
+      injections.push("fragColor = vec4(0.);");
     }
 
     // Inject r and t if iResolution or iTime aren't used
@@ -219,7 +219,7 @@ export function ShaderToy({
 
     if (injections.length > 0) {
       processedCode = processedCode.replace(
-        /void mainImage\s*\(\s*out vec4 o[^)]*\)\s*{/,
+        /void mainImage\s*\(\s*out vec4 fragColor[^)]*\)\s*{/,
         `$& ${injections.join(" ")}`
       );
     }
