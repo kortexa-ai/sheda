@@ -159,6 +159,7 @@ export function ShaderToy({
 
     let processedCode = shaderCode;
 
+    // Fix uninitialized loop variables with float declaration
     processedCode = processedCode.replace(
       /for\s*\(\s*float\s+(\w+)\s*;\s*([^;]+);([^)]+)\)/g,
       (match, varName, condition, increment) => {
@@ -182,6 +183,7 @@ export function ShaderToy({
       }
     );
 
+    // Fix mat2(cos(...+vec4(...))) to preserve ShaderToy behavior
     processedCode = processedCode.replace(
       /mat2\s*\(\s*cos\s*\(\s*([^)]+)\+vec4\s*\(([^)]+)\)\s*\)\s*\)\s*(\*?\s*[0-9.]+)?/g,
       (match, expr, vec4Args, scale) => {
@@ -201,6 +203,27 @@ export function ShaderToy({
       (match, arg) => `exp(clamp(${arg}, -87.0, 87.0))`
     );
 
+    // Initialize out vec4 o if not assigned before use
+    let injections = [];
+    if (processedCode.includes("out vec4 o") && !processedCode.match(/\bo\s*=/)) {
+      injections.push("o = vec4(0.);");
+    }
+
+    // Inject r and t if iResolution or iTime aren't used
+    if (!processedCode.includes("iResolution")) {
+      injections.push("vec2 r = iResolution.xy;");
+    }
+    if (!processedCode.includes("iTime")) {
+      injections.push("float t = iTime;");
+    }
+
+    if (injections.length > 0) {
+      processedCode = processedCode.replace(
+        /void mainImage\s*\(\s*out vec4 o[^)]*\)\s*{/,
+        `$& ${injections.join(" ")}`
+      );
+    }
+
     const hasMain = processedCode.includes("void main(");
     const hasMainImage = processedCode.includes("void mainImage(");
     const hasFCVariable = /\bFC\b/.test(processedCode);
@@ -209,7 +232,7 @@ export function ShaderToy({
     const hasOVariable = /\bo\b/.test(processedCode);
     const hasVec2Pattern = /vec2\s+\w+\s*=\s*\(FC/i.test(processedCode);
     const hasOutputAssignment = /o\s*=\s*[^;]+;/i.test(processedCode);
-    const isLikelyDirectFormat = (hasVec2Pattern || (hasFCVariable && hasOutputAssignment)) && !hasMain && !hasMainImage;
+    const isLikelyDirectFormat = !hasMain && !hasMainImage;
 
     let finalCode = "";
     if (hasMain) {

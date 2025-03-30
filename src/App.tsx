@@ -19,7 +19,7 @@ import { SceneCanvas } from './components/SceneCanvas';
 import blackhole from './components/glsl/blackhole.frag.glsl';
 // Original versions - commented out in favor of mirror versions
 // import blackholetoy from './components/glsl/blackhole.toy.glsl';
-// import sky from './components/glsl/sky.toy.glsl';
+import sky from './components/glsl/sky.toy.glsl';
 // import mountains from './components/glsl/mountains.frag.glsl';
 // import clock from './components/glsl/clock.frag.glsl';
 // import gradientwave from './components/glsl/gradientwave.frag.glsl';
@@ -116,7 +116,7 @@ export default function App() {
                             tintOpacity={0.2}
                         >
                             {/* Blackhole shader with fixed coordinates */}
-                            <ShaderToyCanvas fs={codegolfTest2} />
+                            <ShaderToyCanvas fs={sky} />
                         </FrostedPanel>
 
                     </View>
