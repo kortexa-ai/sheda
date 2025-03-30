@@ -68,7 +68,11 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
   vec2 r = iResolution.xy;
   float t = iTime;
   vec4 o = vec4(0.0, 0.0, 0.0, 1.0);
-  %SHADER_CODE%
+  // ------------------------------
+  // processed direct shader code
+  // ------------------------------
+%SHADER_CODE%
+  // ------------------------------
   fragColor = o;
 }
 `;
@@ -150,7 +154,8 @@ export function ShaderToy({
     initializer: string
   ): string => {
     return body.replace(
-      new RegExp(`(${type}\\s+([a-zA-Z_]\\w*(?:\\s*,\\s*[a-zA-Z_]\\w*(?:\\s*=\\s*(?:[^,;\\n]|\\([^()]*\\))*?)?)*)\\s*;)`, 'g'),
+      // new RegExp(`(${type}\\s+([a-zA-Z_]\\w*(?:\\s*,\\s*[a-zA-Z_]\\w*(?:\\s*=\\s*(?:[^,;\\n]|\\([^()]*\\))*?)?)*)\\s*;)`, 'g'),
+      new RegExp(`(${type}\\s+([a-zA-Z_]\\w*(?:\\s*,\\s*[a-zA-Z_]\\w*(?:\\s*=\\s*[^;]+?)?)*)\\s*;)`, 'g'),
       (decl: string, fullDecl: string, varList: string): string => {
         console.log(`Found uninitialized ${type} variables`);
         const vars: string[] = [];

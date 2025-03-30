@@ -14,23 +14,26 @@ import { ShaderToyCanvas, ShaderToy } from './components/shadertoy';
 import { SceneCanvas } from './components/SceneCanvas';
 // import { TestScene } from './TestScene';
 
+// Original versions - commented out in favor of mirror versions
+// import gradientwave from './components/glsl/gradientwave.frag.glsl';
+// import textureTest from './components/glsl/texture-test.frag.glsl';
+
+// import gradientToy from './components/glsl/gradient.toy.glsl';
+// import singularityShortToy from './components/glsl/singularity-short.toy.glsl';
+// import calibrationToy from './components/glsl/calibration.toy.glsl';
+// import viewportCalibrationToy from './components/glsl/viewport-calibration.toy.glsl';
+// import codegolfTest1Toy from './components/glsl/codegolf-test1.toy.glsl';
+// import codegolfTest2Toy from './components/glsl/codegolf-test2.toy.glsl';
+
 // import starNest from './components/glsl/starnest.frag.glsl';
 // import fire from './components/glsl/fire.frag.glsl';
 import blackhole from './components/glsl/blackhole.frag.glsl';
-// Original versions - commented out in favor of mirror versions
-// import blackholetoy from './components/glsl/blackhole.toy.glsl';
-import sky from './components/glsl/sky.toy.glsl';
-// import mountains from './components/glsl/mountains.frag.glsl';
-// import clock from './components/glsl/clock.frag.glsl';
-// import gradientwave from './components/glsl/gradientwave.frag.glsl';
-import gradient from './components/glsl/gradient.toy.glsl';
-import textureTest from './components/glsl/texture-test.frag.glsl';
-import singularity from './components/glsl/singularity.toy.glsl';
-import singularityShort from './components/glsl/singularity-short.toy.glsl';
-// import calibration from './components/glsl/calibration.toy.glsl';
-// import viewportCalibration from './components/glsl/viewport-calibration.toy.glsl';
-import codegolfTest1 from './components/glsl/codegolf-test1.toy.glsl';
-import codegolfTest2 from './components/glsl/codegolf-test2.toy.glsl';
+
+import blackholeToy from './components/glsl/blackhole.toy.glsl';
+import skyToy from './components/glsl/sky.toy.glsl';
+import mountainsToy from './components/glsl/mountains.toy.glsl';
+import singularityToy from './components/glsl/singularity.toy.glsl';
+import mimasToy from './components/glsl/mimas.toy.glsl';
 
 export default function App() {
     // const [OrbitControls, events] = useOrbitControls();
@@ -84,7 +87,10 @@ export default function App() {
                                 tintOpacity={0.2}
                             >
                                 {/* Using the new ShaderToyBackground component with ShaderToy code */}
-                                <ShaderToyCanvas fs={gradient} />
+                                {/* <ShaderToyCanvas fs={blackholeToy} /> */}
+                                <SceneCanvas>
+                                    <ShaderToy fs={skyToy} />
+                                </SceneCanvas>
                             </FrostedPanel>
                         </Panel>
 
@@ -95,7 +101,7 @@ export default function App() {
                         >
                             {/* Example of texture shader test */}
                             <SceneCanvas>
-                                <ShaderToy fs={textureTest} />
+                                <ShaderToy fs={mountainsToy} />
                             </SceneCanvas>
                         </FrostedPanel>
 
@@ -106,7 +112,7 @@ export default function App() {
                         >
                             {/* Sky shader with fixed coordinates */}
                             <SceneCanvas>
-                                <ShaderToy fs={codegolfTest1} />
+                                <ShaderToy fs={blackholeToy} />
                             </SceneCanvas>
                         </FrostedPanel>
 
@@ -116,7 +122,7 @@ export default function App() {
                             tintOpacity={0.2}
                         >
                             {/* Blackhole shader with fixed coordinates */}
-                            <ShaderToyCanvas fs={sky} />
+                            <ShaderToyCanvas fs={mimasToy} />
                         </FrostedPanel>
 
                     </View>
