@@ -5,7 +5,9 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { parse, useLinkingURL } from 'expo-linking';
 
-import './styles/App.css';
+// import './styles/App.css';
+
+import { Shadertoy } from "@kortexa-ai/react-shadertoy"
 
 import { Panel } from './components/Panel';
 import { FrostedPanel } from './components/FrostedPanel';
@@ -89,10 +91,7 @@ export default function App() {
                                 tintOpacity={0.2}
                             >
                                 {/* Using the new ShaderToyBackground component with ShaderToy code */}
-                                {/* <ShaderToyCanvas fs={blackholeToy} /> */}
-                                <SceneCanvas>
-                                    <ShaderToy fs={skyToy} />
-                                </SceneCanvas>
+                                <ShaderToyCanvas fs={skyToy} />
                             </FrostedPanel>
                         </Panel>
 
@@ -112,7 +111,7 @@ export default function App() {
                             tintOpacity={0.2}
                         >
                             <SceneCanvas>
-                                <ShaderToy fs={singularityToy} />
+                                <Shadertoy fs={singularityToy} />
                             </SceneCanvas>
                         </FrostedPanel>
 
