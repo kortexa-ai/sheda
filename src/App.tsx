@@ -7,12 +7,11 @@ import { parse, useLinkingURL } from 'expo-linking';
 
 // import './styles/App.css';
 
-import { Shadertoy } from "@kortexa-ai/react-shadertoy"
+import { Shadertoy, ShadertoyCanvas } from "@kortexa-ai/react-shadertoy"
 
 import { Panel } from './components/Panel';
 import { FrostedPanel } from './components/FrostedPanel';
 import { ShaderBackground } from './components/ShaderBackground';
-import { ShaderToyCanvas, ShaderToy } from './components/shadertoy';
 import { SceneCanvas } from './components/SceneCanvas';
 // import { TestScene } from './TestScene';
 
@@ -91,7 +90,7 @@ export default function App() {
                                 tintOpacity={0.2}
                             >
                                 {/* Using the new ShaderToyBackground component with ShaderToy code */}
-                                <ShaderToyCanvas fs={skyToy} />
+                                <ShadertoyCanvas fs={skyToy} />
                             </FrostedPanel>
                         </Panel>
 
@@ -101,7 +100,7 @@ export default function App() {
                             tintOpacity={0.2}
                         >
                             <SceneCanvas>
-                                <ShaderToy fs={mountainsToy} />
+                                <Shadertoy fs={mountainsToy} />
                             </SceneCanvas>
                         </FrostedPanel>
 
