@@ -1,4 +1,4 @@
-import { Canvas, CanvasProps } from '@react-three/fiber/native';
+import { Canvas, type CanvasProps } from '@react-three/fiber/native';
 
 interface SceneCanvasProps extends CanvasProps {
     customProps?: Partial<CanvasProps>;

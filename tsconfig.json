@@ -6,6 +6,7 @@
       "@/*": ["./src/*"]
     },
     "module": "ESNext",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "allowJs": true,
     "jsx": "react-native",

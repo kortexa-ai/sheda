@@ -7,7 +7,7 @@ import { parse, useLinkingURL } from 'expo-linking';
 
 // import './styles/App.css';
 
-import { Shadertoy, ShadertoyCanvas } from "@kortexa-ai/react-shadertoy"
+import { Shadertoy } from "@kortexa-ai/react-shadertoy"
 
 import { Panel } from './components/Panel';
 import { FrostedPanel } from './components/FrostedPanel';
@@ -30,13 +30,13 @@ import { SceneCanvas } from './components/SceneCanvas';
 // import fire from './components/glsl/fire.frag.glsl';
 import blackhole from './components/glsl/blackhole.frag.glsl';
 
-import blackholeToy from './components/glsl/blackhole.toy.glsl';
+// import blackholeToy from './components/glsl/blackhole.toy.glsl';
 import skyToy from './components/glsl/sky.toy.glsl';
 import mountainsToy from './components/glsl/mountains.toy.glsl';
 import singularityToy from './components/glsl/singularity.toy.glsl';
-import mimasToy from './components/glsl/mimas.toy.glsl';
-import seascapeToy from './components/glsl/seascape.toy.glsl';
-import cloudsToy from './components/glsl/clouds.toy.glsl';
+// import mimasToy from './components/glsl/mimas.toy.glsl';
+// import seascapeToy from './components/glsl/seascape.toy.glsl';
+// import cloudsToy from './components/glsl/clouds.toy.glsl';
 
 export default function App() {
     // const [OrbitControls, events] = useOrbitControls();
@@ -89,8 +89,10 @@ export default function App() {
                                 tintColor="red"
                                 tintOpacity={0.2}
                             >
-                                {/* Using the new ShaderToyBackground component with ShaderToy code */}
-                                <ShadertoyCanvas fs={skyToy} />
+                                {/* <ShadertoyCanvas fs={skyToy} /> */}
+                                <SceneCanvas>
+                                    <Shadertoy fs={skyToy} />
+                                </SceneCanvas>
                             </FrostedPanel>
                         </Panel>
 

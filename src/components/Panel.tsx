@@ -1,4 +1,4 @@
-import { View, ViewProps, StyleSheet } from 'react-native';
+import { View, type ViewProps, StyleSheet } from 'react-native';
 
 export function Panel({ children, style, ...props }: ViewProps) {
     return (

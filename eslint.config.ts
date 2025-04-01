@@ -1,6 +1,5 @@
 import js from '@eslint/js'
 import tseslint from 'typescript-eslint'
-import importPlugin from 'eslint-plugin-import'
 import reactNativePlugin from '@react-native/eslint-plugin'
 
 import reactHooks from 'eslint-plugin-react-hooks'
@@ -22,16 +21,7 @@ export default tseslint.config(
       'public/**',
       'server/**',
       'functions/**',
-    ]
-  },
-  {
-    files: ['**/*.{js,jsx}'],
-    extends: [js.configs.recommended],
-    languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      globals: globals.browser
-    }
+    ],
   },
   {
     files: ['**/*.{ts,tsx}'],
@@ -40,7 +30,6 @@ export default tseslint.config(
       ...tseslint.configs.recommended,
     ],
     plugins: {
-      import: importPlugin,
       'react-native': reactNativePlugin,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
@@ -55,7 +44,7 @@ export default tseslint.config(
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
-      globals: globals.browser,
+      globals: { ...globals.browser, ...globals.node },
       parser: tseslint.parser,
       parserOptions: {
         project: ['./tsconfig.{app,node}.json'],
@@ -74,7 +63,6 @@ export default tseslint.config(
       ],
       '@typescript-eslint/no-import-type-side-effects': 'error',
       ...reactHooks.configs.recommended.rules,
-      ...reactNativePlugin.configs.recommended.rules,
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
@@ -84,9 +72,21 @@ export default tseslint.config(
     },
   },
   {
-    files: ['**/*.config.{js,ts}', 'scripts/**/*.{js,ts}'],
+    files: ['./src/**/*.{js,jsx}'],
+    extends: [js.configs.recommended],
     languageOptions: {
-      globals: { ...globals.browser, ...globals.node }
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: { ...globals.browser, ...globals.node },
     }
+  },
+  {
+    files: ['./*.js'],
+    extends: [js.configs.recommended],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'commonjs',
+      globals: globals.node,
+    },
   },
 )

@@ -1,5 +1,6 @@
-import { ColorValue, StyleSheet, ViewStyle, ViewProps } from 'react-native';
-import { BlurView, BlurTint } from 'expo-blur';
+import type { ColorValue, ViewStyle, ViewProps } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { BlurView, type BlurTint } from 'expo-blur';
 import { Panel } from './Panel';
 import Color from 'color';
 
