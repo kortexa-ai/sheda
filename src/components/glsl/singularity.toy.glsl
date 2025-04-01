@@ -27,21 +27,21 @@ void mainImage(out vec4 O, vec2 F) {
      w;
 
     //Loop through waves
-     for(; i++ < 9.; w += 1. + sin(v))
+    for(; i++ < 9.; w += 1. + sin(v))
         //Distort coordinates
-          v += .7 * sin(v.yx * i + iTime) / i + .5;
+        v += .7 * sin(v.yx * i + iTime) / i + .5;
     //Acretion disk radius
-     i = length(sin(v / .3) * .4 + c * (3. + d));
+    i = length(sin(v / .3) * .4 + c * (3. + d));
     //Red/blue gradient
-     O = 1. - exp(-exp(c.x * vec4(.6, -.4, -1, 0))
+    O = 1. - exp(-exp(c.x * vec4(.6, -.4, -1, 0))
                    //Wave coloring
-     / w.xyyx
+                   / w.xyyx
                    //Acretion disk brightness
-     / (2. + i * i / 4. - i)
+                   / (2. + i * i / 4. - i)
                    //Center darkness
-     / (.5 + 1. / a)
+                   / (.5 + 1. / a)
                    //Rim highlight
-     / (.03 + abs(length(p) - .7)));
+                   / (.03 + abs(length(p) - .7)));
 }
 
 //Original [432]
