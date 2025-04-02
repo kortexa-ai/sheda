@@ -9,24 +9,24 @@
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		5957CF4F2B7B7AF7AFCB53A8 /* libPods-sheda.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0B92380046C2D531ECED8B /* libPods-sheda.a */; };
-		771B3A53CEA0FF58E9683615 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EBF34E404EDA2687E9F062 /* ExpoModulesProvider.swift */; };
+		4C38B36BC975749BB284C8D5 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF009203DAFEDB6E5369459 /* ExpoModulesProvider.swift */; };
+		7D9E6C8309B4CC82D3174331 /* libPods-sheda.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A944C5C02289A99B16FCB71E /* libPods-sheda.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		BF4DCA1F48BA3B8DBEEC68FE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B00D5C9AE213ED186CDCB49E /* PrivacyInfo.xcprivacy */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
+		F60BB3DB5F97AE1A7902BDD0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CE4FD5C2BF6ED5B24AEB794C /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09480260AC7722A4AC130393 /* Pods-sheda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sheda.debug.xcconfig"; path = "Target Support Files/Pods-sheda/Pods-sheda.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* sheda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sheda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = sheda/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = sheda/Info.plist; sourceTree = "<group>"; };
-		7B0B92380046C2D531ECED8B /* libPods-sheda.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sheda.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1EBF34E404EDA2687E9F062 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-sheda/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		A8F577A64FC63C006DE068B4 /* Pods-sheda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sheda.release.xcconfig"; path = "Target Support Files/Pods-sheda/Pods-sheda.release.xcconfig"; sourceTree = "<group>"; };
+		A944C5C02289A99B16FCB71E /* libPods-sheda.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sheda.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = sheda/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B00D5C9AE213ED186CDCB49E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = sheda/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		B131C81AAC02A39F4F59957F /* Pods-sheda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sheda.debug.xcconfig"; path = "Target Support Files/Pods-sheda/Pods-sheda.debug.xcconfig"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		C005414BDC67FAA58DF1C014 /* Pods-sheda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sheda.release.xcconfig"; path = "Target Support Files/Pods-sheda/Pods-sheda.release.xcconfig"; sourceTree = "<group>"; };
+		CE4FD5C2BF6ED5B24AEB794C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = sheda/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		DDF009203DAFEDB6E5369459 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-sheda/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = sheda/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* sheda-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "sheda-Bridging-Header.h"; path = "sheda/sheda-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -37,13 +37,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5957CF4F2B7B7AF7AFCB53A8 /* libPods-sheda.a in Frameworks */,
+				7D9E6C8309B4CC82D3174331 /* libPods-sheda.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07AB1C114D7ABCF3A65F0A6C /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				7B28F2C0AF147A66DB97E0AD /* sheda */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* sheda */ = {
 			isa = PBXGroup;
 			children = (
@@ -53,7 +61,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				B00D5C9AE213ED186CDCB49E /* PrivacyInfo.xcprivacy */,
+				CE4FD5C2BF6ED5B24AEB794C /* PrivacyInfo.xcprivacy */,
 			);
 			name = sheda;
 			sourceTree = "<group>";
@@ -62,35 +70,17 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				7B0B92380046C2D531ECED8B /* libPods-sheda.a */,
+				A944C5C02289A99B16FCB71E /* libPods-sheda.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3F494B64DAFAF8FEEBEDFA55 /* sheda */ = {
+		7B28F2C0AF147A66DB97E0AD /* sheda */ = {
 			isa = PBXGroup;
 			children = (
-				A1EBF34E404EDA2687E9F062 /* ExpoModulesProvider.swift */,
+				DDF009203DAFEDB6E5369459 /* ExpoModulesProvider.swift */,
 			);
 			name = sheda;
-			sourceTree = "<group>";
-		};
-		4D0F1D5EED341641EC74ED64 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				3F494B64DAFAF8FEEBEDFA55 /* sheda */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
-		76147AD476D7B700DD2DB3B1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B131C81AAC02A39F4F59957F /* Pods-sheda.debug.xcconfig */,
-				A8F577A64FC63C006DE068B4 /* Pods-sheda.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -107,8 +97,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				76147AD476D7B700DD2DB3B1 /* Pods */,
-				4D0F1D5EED341641EC74ED64 /* ExpoModulesProviders */,
+				BD26736382AA3EC7C5C0B6FA /* Pods */,
+				07AB1C114D7ABCF3A65F0A6C /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -132,6 +122,16 @@
 			path = sheda/Supporting;
 			sourceTree = "<group>";
 		};
+		BD26736382AA3EC7C5C0B6FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				09480260AC7722A4AC130393 /* Pods-sheda.debug.xcconfig */,
+				C005414BDC67FAA58DF1C014 /* Pods-sheda.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "sheda" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				738C57C9697C1E307F61819E /* [Expo] Configure project */,
+				345C6568F72BEE5BC11A8E7A /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				CAB64AF0F80A69405DCBF05C /* [CP] Embed Pods Frameworks */,
+				C4927A2888728623FFC5547D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,7 +196,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				BF4DCA1F48BA3B8DBEEC68FE /* PrivacyInfo.xcprivacy in Resources */,
+				F60BB3DB5F97AE1A7902BDD0 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +240,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		738C57C9697C1E307F61819E /* [Expo] Configure project */ = {
+		345C6568F72BEE5BC11A8E7A /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -295,7 +295,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sheda/Pods-sheda-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CAB64AF0F80A69405DCBF05C /* [CP] Embed Pods Frameworks */ = {
+		C4927A2888728623FFC5547D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -321,7 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				771B3A53CEA0FF58E9683615 /* ExpoModulesProvider.swift in Sources */,
+				4C38B36BC975749BB284C8D5 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +330,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B131C81AAC02A39F4F59957F /* Pods-sheda.debug.xcconfig */;
+			baseConfigurationReference = 09480260AC7722A4AC130393 /* Pods-sheda.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -367,7 +367,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8F577A64FC63C006DE068B4 /* Pods-sheda.release.xcconfig */;
+			baseConfigurationReference = C005414BDC67FAA58DF1C014 /* Pods-sheda.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
