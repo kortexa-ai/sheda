@@ -13,14 +13,16 @@ const config: ExpoConfig = {
         turboModules: true
     },
     plugins: [
-        [
-            "expo-asset",
-            {
-                assets: [
-                ],
-            }
-        ],
+        ["expo-asset", {
+            assets: [
+            ],
+        }],
         ["expo-apple-authentication"],
+        ["expo-build-properties", {
+            ios: {
+                useFrameworks: "static"
+            }
+        }],
     ],
     platforms: ["ios", "web"],
 
