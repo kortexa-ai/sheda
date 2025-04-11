@@ -3,6 +3,8 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 // import useOrbitControls from 'r3f-native-orbitcontrols';
 
+import { getApp } from '@react-native-firebase/app';
+
 import { parse, useLinkingURL } from 'expo-linking';
 
 // import './styles/App.css';
@@ -39,6 +41,7 @@ import singularityToy from './components/glsl/singularity.toy.glsl';
 // import cloudsToy from './components/glsl/clouds.toy.glsl';
 
 export default function App() {
+    getApp();
     // const [OrbitControls, events] = useOrbitControls();
     const url = useLinkingURL();
     if (url) {

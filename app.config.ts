@@ -17,12 +17,14 @@ const config: ExpoConfig = {
             assets: [
             ],
         }],
-        ["expo-apple-authentication"],
         ["expo-build-properties", {
             ios: {
                 useFrameworks: "static"
             }
         }],
+        ["expo-apple-authentication"],
+        ["@react-native-firebase/app"],
+        ["@react-native-firebase/auth"],
     ],
     platforms: ["ios", "web"],
 
@@ -41,10 +43,12 @@ const config: ExpoConfig = {
         bundleIdentifier: "ai.kortexa.sheda",
         buildNumber: "1",
         usesAppleSignIn: true,
+        googleServicesFile: "./GoogleService-Info.plist",
     },
     android: {
         package: "ai.kortexa.sheda",
         versionCode: 1,
+        googleServicesFile: "./google-services.json",
         adaptiveIcon: {
             foregroundImage: "./assets/adaptive-icon.png",
             backgroundColor: "#ffffff"

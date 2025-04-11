@@ -36,6 +36,7 @@ expo-env.d.ts
 .firebase/
 *service-account*.json
 *serviceAccount*.json
+google-services.json
 GoogleService-Info.plist
 
 # debug
