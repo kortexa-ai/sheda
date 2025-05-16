@@ -5,9 +5,12 @@ vec3 rotate3D(float d, vec3 axis) {
     return vec3(cos(angle), sin(angle), 1.0); // Simple distortion
 }
 
-void mainImage(out vec4 o, in vec2 FC) {
+void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+    vec2 FC = fragCoord;
     vec2 r = iResolution.xy;
     float t = iTime;
+    vec4 o = vec4(0.0, 0.0, 0.0, 1.0);
+
     vec2 uv = FC / r * 2.0 - 1.0; // Normalized UV (-1 to 1)
     uv.x *= r.x / r.y; // Aspect correction
     vec3 rd = normalize(vec3(uv * 3., 5.)); // Ray direction
@@ -23,4 +26,6 @@ void mainImage(out vec4 o, in vec2 FC) {
         o += vec4(0.1, 0.2, 0.3, 0.0) * 0.05 / (1.0 + d * d); // Glow near surface
     }
     o = tanh(o / vec4(1, 1, 1, 1) * 0.5); // Softer scaling, equal channels
+
+    fragColor = o;
 }

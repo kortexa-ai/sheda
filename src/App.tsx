@@ -6,12 +6,12 @@ import { parse, useLinkingURL } from 'expo-linking';
 
 // import useOrbitControls from 'r3f-native-orbitcontrols';
 
-import { Shadertoy } from "@kortexa-ai/react-shadertoy"
+// import { Shadertoy } from "@kortexa-ai/react-shadertoy"
 
 import { Panel } from './components/Panel';
-import { FrostedPanel } from './components/FrostedPanel';
-// import { ShaderBackground } from './components/ShaderBackground';
-import { SceneCanvas } from './components/SceneCanvas';
+// import { FrostedPanel } from './components/FrostedPanel';
+import { ShaderBackground } from './components/ShaderBackground';
+// import { SceneCanvas } from './components/SceneCanvas';
 // import { TestScene } from './TestScene';
 
 // Original versions - commented out in favor of mirror versions
@@ -37,10 +37,10 @@ import { SceneCanvas } from './components/SceneCanvas';
 // import seascapeToy from './components/glsl/seascape.toy.glsl';
 // import cloudsToy from './components/glsl/clouds.toy.glsl';
 
-// import atlanticToy from './components/glsl/atlantic.toy.glsl';
+import atlanticToy from './components/glsl/atlantic.toy.glsl';
 // import skyToy from './components/glsl/sky.toy.glsl';
-import fogToy from './components/glsl/fog.toy.glsl';
-import simplexToy from './components/glsl/simplex.toy.glsl';
+// import fogToy from './components/glsl/fog.toy.glsl';
+// import simplexToy from './components/glsl/simplex.toy.glsl';
 
 export default function App() {
     // const loginUrl = 'https://kortexa.ai';
@@ -90,25 +90,25 @@ export default function App() {
                     >
                         {/* <AuthProvider auth={auth} loginRedirect={loginUrl}>
                             <AuthProvider.Login title="sheda"> */}
+                        <ShaderBackground fragmentShader={atlanticToy} />
                         <Panel
                             style={{
                                 flexDirection: 'row',
                             }}
                         // {...events}
                         >
-                            <FrostedPanel
+                            {/* <FrostedPanel
                                 intensity={5}
-                                tintColor="red"
+                                tintColor="white"
                                 tintOpacity={0.2}
-                            >
-                                {/* <ShadertoyCanvas fs={skyToy} /> */}
-                                <SceneCanvas>
-                                    <Shadertoy fs={simplexToy} />
-                                </SceneCanvas>
-                            </FrostedPanel>
+                            > */}
+                                {/* <SceneCanvas>
+                                    <Shadertoy fs={atlanticToy} />
+                                </SceneCanvas> */}
+                            {/* </FrostedPanel> */}
                         </Panel>
 
-                        <FrostedPanel
+                        {/* <FrostedPanel
                             intensity={5}
                             tintColor="yellow"
                             tintOpacity={0.2}
@@ -124,7 +124,7 @@ export default function App() {
                             tintOpacity={0.2}
                         >
                             <SceneCanvas>
-                                {/* <Shadertoy fs={singularityToy} /> */}
+                                <Shadertoy fs={singularityToy} />
                             </SceneCanvas>
                         </FrostedPanel>
 
@@ -133,8 +133,8 @@ export default function App() {
                             tintColor="green"
                             tintOpacity={0.2}
                         >
-                            {/* <ShaderBackground fragmentShader={blackhole} /> */}
-                        </FrostedPanel>
+                            <ShaderBackground fragmentShader={blackhole} />
+                        </FrostedPanel> */}
 
                         {/* </AuthProvider.Login>
                         </AuthProvider> */}
