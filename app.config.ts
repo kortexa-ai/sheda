@@ -23,6 +23,7 @@ const config: ExpoConfig = {
             }
         }],
         ["expo-apple-authentication"],
+        ["@react-native-google-signin/google-signin"],
         ["@react-native-firebase/app"],
         ["@react-native-firebase/auth"],
     ],
