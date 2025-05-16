@@ -1,17 +1,17 @@
 import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-// import { parse, useLinkingURL } from 'expo-linking';
-import { AuthProvider } from './auth/AuthProvider';
+import { parse, useLinkingURL } from 'expo-linking';
+// import { AuthProvider } from './auth/AuthProvider';
 
 // import useOrbitControls from 'r3f-native-orbitcontrols';
 
-// import { Shadertoy } from "@kortexa-ai/react-shadertoy"
+import { Shadertoy } from "@kortexa-ai/react-shadertoy"
 
 import { Panel } from './components/Panel';
 import { FrostedPanel } from './components/FrostedPanel';
 // import { ShaderBackground } from './components/ShaderBackground';
-// import { SceneCanvas } from './components/SceneCanvas';
+import { SceneCanvas } from './components/SceneCanvas';
 // import { TestScene } from './TestScene';
 
 // Original versions - commented out in favor of mirror versions
@@ -37,22 +37,27 @@ import { FrostedPanel } from './components/FrostedPanel';
 // import seascapeToy from './components/glsl/seascape.toy.glsl';
 // import cloudsToy from './components/glsl/clouds.toy.glsl';
 
+// import atlanticToy from './components/glsl/atlantic.toy.glsl';
+// import skyToy from './components/glsl/sky.toy.glsl';
+import fogToy from './components/glsl/fog.toy.glsl';
+import simplexToy from './components/glsl/simplex.toy.glsl';
+
 export default function App() {
     // const loginUrl = 'https://kortexa.ai';
     // const auth = getAuth();
 
     // const [OrbitControls, events] = useOrbitControls();
 
-    // const url = useLinkingURL();
-    // if (url) {
-    //     const { hostname, path, queryParams } = parse(url);
+    const url = useLinkingURL();
+    if (url) {
+        const { hostname, path, queryParams } = parse(url);
 
-    //     console.log(
-    //         `Linked to app with hostname: ${hostname}, path: ${path} and data: ${JSON.stringify(
-    //             queryParams
-    //         )}`
-    //     );
-    // }
+        console.log(
+            `Linked to app with hostname: ${hostname}, path: ${path} and data: ${JSON.stringify(
+                queryParams
+            )}`
+        );
+    }
 
     return (
         <SafeAreaProvider>
@@ -62,7 +67,6 @@ export default function App() {
                 height: '100%',
                 backgroundColor: 'black',
             }}>
-                {/* <ShaderBackground fragmentShader={blackhole} /> */}
 
                 <SafeAreaView
                     style={{
@@ -71,45 +75,46 @@ export default function App() {
                         zIndex: 1,
                     }}
                 >
-                    <AuthProvider>
-                        <AuthProvider.Login title="sheda">
-                            <View
-                                style={{
-                                    flex: 1,
-                                    position: 'relative',
-                                    alignItems: 'stretch',
-                                    justifyContent: 'space-evenly',
-                                    margin: 16,
-                                    gap: 16,
-                                }}
-                            >
-                                {/* <AuthProvider auth={auth} loginRedirect={loginUrl}>
+                    {/* <ShaderBackground fragmentShader={atlanticToy} /> */}
+                    {/* <AuthProvider>
+                        <AuthProvider.Login title="sheda"> */}
+                    <View
+                        style={{
+                            flex: 1,
+                            position: 'relative',
+                            alignItems: 'stretch',
+                            justifyContent: 'space-evenly',
+                            margin: 16,
+                            gap: 16,
+                        }}
+                    >
+                        {/* <AuthProvider auth={auth} loginRedirect={loginUrl}>
                             <AuthProvider.Login title="sheda"> */}
-                                <Panel
-                                    style={{
-                                        flexDirection: 'row',
-                                    }}
-                                // {...events}
-                                >
-                                    <FrostedPanel
-                                        intensity={5}
-                                        tintColor="red"
-                                        tintOpacity={0.2}
-                                    >
-                                        {/* <ShadertoyCanvas fs={skyToy} /> */}
-                                        {/* <SceneCanvas>
-                                    <Shadertoy fs={skyToy} />
-                                </SceneCanvas> */}
-                                    </FrostedPanel>
-                                </Panel>
+                        <Panel
+                            style={{
+                                flexDirection: 'row',
+                            }}
+                        // {...events}
+                        >
+                            <FrostedPanel
+                                intensity={5}
+                                tintColor="red"
+                                tintOpacity={0.2}
+                            >
+                                {/* <ShadertoyCanvas fs={skyToy} /> */}
+                                <SceneCanvas>
+                                    <Shadertoy fs={simplexToy} />
+                                </SceneCanvas>
+                            </FrostedPanel>
+                        </Panel>
 
-                                {/* <FrostedPanel
+                        <FrostedPanel
                             intensity={5}
                             tintColor="yellow"
                             tintOpacity={0.2}
                         >
                             <SceneCanvas>
-                                <Shadertoy fs={mountainsToy} />
+                                <Shadertoy fs={fogToy} />
                             </SceneCanvas>
                         </FrostedPanel>
 
@@ -119,7 +124,7 @@ export default function App() {
                             tintOpacity={0.2}
                         >
                             <SceneCanvas>
-                                <Shadertoy fs={singularityToy} />
+                                {/* <Shadertoy fs={singularityToy} /> */}
                             </SceneCanvas>
                         </FrostedPanel>
 
@@ -128,14 +133,14 @@ export default function App() {
                             tintColor="green"
                             tintOpacity={0.2}
                         >
-                            <ShaderBackground fragmentShader={blackhole} />
-                        </FrostedPanel> */}
+                            {/* <ShaderBackground fragmentShader={blackhole} /> */}
+                        </FrostedPanel>
 
-                                {/* </AuthProvider.Login>
+                        {/* </AuthProvider.Login>
                         </AuthProvider> */}
-                            </View>
-                        </AuthProvider.Login>
-                    </AuthProvider>
+                    </View>
+                    {/* </AuthProvider.Login>
+                    </AuthProvider> */}
                 </SafeAreaView>
             </GestureHandlerRootView>
         </SafeAreaProvider >
